@@ -10,16 +10,16 @@ using Windows.UI.Xaml.Navigation;
 
 namespace HamburgerUI.ViewModels
 {
-    public class AddPageViewModel : ViewModelBase
+    public class EditPageViewmodel : ViewModelBase
     {
-        public AddPageViewModel()
+        public EditPageViewmodel()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
                 Value = "Designtime value";
             }
-
         }
+
         private string _Value = "Default";
         public string Value { get { return _Value; } set { Set(ref _Value, value); } }
 

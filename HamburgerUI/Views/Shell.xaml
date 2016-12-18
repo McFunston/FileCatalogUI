@@ -27,7 +27,7 @@
                                Text="Search the Catalog" />
                         </StackPanel>
             </Controls:HamburgerButtonInfo>
-            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage">
+            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:AddPage">
                 <StackPanel Orientation="Horizontal">
                             <SymbolIcon Width="48"
                                 Height="48"
@@ -38,7 +38,7 @@
                         </StackPanel>
             </Controls:HamburgerButtonInfo>
 
-            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage">
+            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:EditPage">
                 <StackPanel Orientation="Horizontal">
                             <SymbolIcon Width="48"
                                 Height="48"

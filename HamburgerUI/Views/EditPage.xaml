@@ -1,6 +1,6 @@
 ﻿<Page
-    x:Class="HamburgerUI.Views.AddPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    x:Class="HamburgerUI.Views.EditPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:Behaviors="using:Template10.Behaviors"
       xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
@@ -12,9 +12,9 @@
       xmlns:vm="using:HamburgerUI.ViewModels"
       x:Name="ThisPage"
       mc:Ignorable="d">
-    
+
     <Page.DataContext>
-        <vm:AddPageViewModel x:Name="ViewModel" />
+        <vm:EditPageViewmodel x:Name="ViewModel" />
     </Page.DataContext>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -72,22 +72,19 @@
                        RelativePanel.Below="pageHeader">
 
 
-                <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0">
+                <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0" BorderThickness="1">
 
-                    <TextBox MinWidth="150"
-                         MinHeight="62"
-                         Header="Catalog Name"
-                         Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         TextWrapping="Wrap">
+                    <ListView MinWidth="150" 
+                         MinHeight="62">
 
-                    </TextBox>
+                    </ListView>
 
                 </controls:Resizer>
                 
                 <!-- Click="{x:Bind ViewModel.GotoDetailsPage}" -->
                 <Button x:Name="AddButton"
                     
-                    Content="Add New Archive"
+                    Content="Remove"
                     RelativePanel.AlignBottomWith="parameterResizer"
                     RelativePanel.RightOf="parameterResizer" />
               
