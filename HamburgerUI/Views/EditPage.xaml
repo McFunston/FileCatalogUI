@@ -54,7 +54,7 @@
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True"
-                             Text="Add Page" />
+                             Text="Edit Page" />
 
         <!--  content  -->
         <ScrollViewer EntranceNavigationTransitionInfo.IsTargetElement="True"
