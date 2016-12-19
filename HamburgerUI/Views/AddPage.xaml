@@ -86,7 +86,7 @@
                 
                 <!-- Click="{x:Bind ViewModel.GotoDetailsPage}" -->
                 <Button x:Name="AddButton"
-                    
+                    Click="{x:Bind ViewModel.PickFolder}"
                     Content="Add New Archive"
                     RelativePanel.AlignBottomWith="parameterResizer"
                     RelativePanel.RightOf="parameterResizer" />

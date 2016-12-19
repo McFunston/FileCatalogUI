@@ -6,22 +6,40 @@ using System.Threading.Tasks;
 using Template10.Common;
 using Template10.Mvvm;
 using Template10.Services.NavigationService;
+using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Navigation;
 
 namespace HamburgerUI.ViewModels
 {
     public class AddPageViewModel : ViewModelBase
     {
+        
         public AddPageViewModel()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
                 Value = "Designtime value";
             }
-
+            
         }
+
+        private FolderPicker fP;
+
+        public FolderPicker FP
+        {
+            get
+            {
+                fP = new FolderPicker();
+                fP.FileTypeFilter.Add("*");
+                return fP; }
+            set { fP = value; }
+        }
+
+        
+
         private string _Value = "Default";
         public string Value { get { return _Value; } set { Set(ref _Value, value); } }
+
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
@@ -43,5 +61,9 @@ namespace HamburgerUI.ViewModels
             args.Cancel = false;
             await Task.CompletedTask;
         }
+
+
+
+        public async void PickFolder() => await FP.PickSingleFolderAsync();
     }
 }
