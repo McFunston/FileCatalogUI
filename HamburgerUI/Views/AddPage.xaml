@@ -86,11 +86,23 @@
                 
                 <!-- Click="{x:Bind ViewModel.GotoDetailsPage}" -->
                 <Button x:Name="AddButton"
-                    Click="{x:Bind ViewModel.PickFolder}"
+                    Click="AddButton_Click"
                     Content="Add New Archive"
                     RelativePanel.AlignBottomWith="parameterResizer"
                     RelativePanel.RightOf="parameterResizer" />
-              
+
+                <controls:Resizer x:Name="FolderPathResizer" 
+                                  Margin="16,16,16,0" 
+                                  RelativePanel.AlignBottomWith="parameterResizer"
+                                  RelativePanel.RightOf="AddButton">
+                    <TextBox MinWidth="150"
+                         MinHeight="62"
+                         x:Name="AddFolderPath"
+                         Header="Path"
+                         Text="{Binding AddFolderPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         TextWrapping="Wrap" >
+                    </TextBox>
+                </controls:Resizer>
 
             </RelativePanel>
 

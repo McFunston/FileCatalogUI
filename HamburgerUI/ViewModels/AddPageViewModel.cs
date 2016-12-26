@@ -13,6 +13,7 @@ namespace HamburgerUI.ViewModels
 {
     public class AddPageViewModel : ViewModelBase
     {
+        public string AddFolderPath { get; set; }
         
         public AddPageViewModel()
         {
@@ -23,17 +24,7 @@ namespace HamburgerUI.ViewModels
             
         }
 
-        private FolderPicker fP;
 
-        public FolderPicker FP
-        {
-            get
-            {
-                fP = new FolderPicker();
-                fP.FileTypeFilter.Add("*");
-                return fP; }
-            set { fP = value; }
-        }
 
         
 
@@ -64,6 +55,6 @@ namespace HamburgerUI.ViewModels
 
 
 
-        public async void PickFolder() => await FP.PickSingleFolderAsync();
+
     }
 }
