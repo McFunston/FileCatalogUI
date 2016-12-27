@@ -55,25 +55,6 @@ namespace HamburgerUI.Services
 
 
         }
-        ///// <summary>
-        ///// Gets the info pertaining to the archive set (Name of the set, type of drive that the archive is on, and Volume Label of the drive).
-        ///// </summary>
-        ///// <param name="archiveName"></param>
-        ///// <param name="path"></param>
-        ///// <returns></returns>
-        //public static Archive GetArchiveInfo(string archiveName, string path)
-        //{
-        //    try
-        //    {
-        //        var drive = new DriveInfo(@path);
-        //        var archiveInfo = new Archive(archiveName, drive.DriveType, drive.VolumeLabel);
-        //        return archiveInfo;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return null;
-        //        throw;
-        //    }
-        //}
+
     }
 }

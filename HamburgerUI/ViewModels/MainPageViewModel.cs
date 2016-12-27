@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Navigation;
+using HamburgerUI.Models;
 
 namespace HamburgerUI.ViewModels
 {
@@ -16,8 +17,9 @@ namespace HamburgerUI.ViewModels
             {
                 Value = "Designtime value";
             }
+            
         }
-
+                
         string _Value = "";
         public string Value { get { return _Value; } set { Set(ref _Value, value); } }
 

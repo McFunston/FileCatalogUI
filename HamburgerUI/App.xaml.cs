@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Controls;
+using HamburgerUI.Models;
 
 namespace HamburgerUI
 {
@@ -46,6 +47,9 @@ namespace HamburgerUI
                 ModalContent = new Views.Busy(),
             };
         }
+
+
+
 
         public override async Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
         {

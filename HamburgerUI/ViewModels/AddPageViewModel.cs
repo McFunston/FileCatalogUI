@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamburgerUI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,14 +14,16 @@ namespace HamburgerUI.ViewModels
 {
     public class AddPageViewModel : ViewModelBase
     {
+
         public AddPageViewModel()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
                 CatalogName = "Designtime value";
             }
-            
+               
         }
+        
 
         private bool goEnabled = false;
 
