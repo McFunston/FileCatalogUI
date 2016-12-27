@@ -76,34 +76,39 @@
 
                     <TextBox MinWidth="150"
                          MinHeight="62"
+                             x:Name="CatName"
                          Header="Catalog Name"
-                         Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding CatalogName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          TextWrapping="Wrap">
-
                     </TextBox>
 
                 </controls:Resizer>
                 
                 <!-- Click="{x:Bind ViewModel.GotoDetailsPage}" -->
                 <Button x:Name="AddButton"
-                    Click="AddButton_Click"
-                    Content="Add New Archive"
-                    RelativePanel.AlignBottomWith="parameterResizer"
-                    RelativePanel.RightOf="parameterResizer" />
+                        Margin="16,30,16,0"
+                        Click="AddButton_Click"
+                        Content="Location"
+                        RelativePanel.Below="parameterResizer"/>
 
                 <controls:Resizer x:Name="FolderPathResizer" 
-                                  Margin="16,16,16,0" 
-                                  RelativePanel.AlignBottomWith="parameterResizer"
+                                  Margin="16,30,16,0" 
+                                   
+                                  RelativePanel.AlignTopWith="AddButton"
                                   RelativePanel.RightOf="AddButton">
                     <TextBox MinWidth="150"
-                         MinHeight="62"
                          x:Name="AddFolderPath"
-                         Header="Path"
                          Text="{Binding AddFolderPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         TextWrapping="Wrap" >
+                         TextWrapping="Wrap" IsReadOnly="True">
                     </TextBox>
+                    
                 </controls:Resizer>
 
+                <Button x:Name="GoButton"
+                        Margin="16,30,16,0"
+                        Content="Begin"
+                        IsEnabled="{Binding GoEnabled, Mode=OneWay}"
+                        RelativePanel.Below="FolderPathResizer"/>
             </RelativePanel>
 
             
