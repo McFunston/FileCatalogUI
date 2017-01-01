@@ -10,7 +10,10 @@ namespace HamburgerUI.Models
     {
         private static Catalog cat = new Catalog();
 
-        private Catalog() { }
+        private Catalog()
+        {
+            FileSet = new Dictionary<Archive, ICollection<IFile>>();                       
+        }
         
         public static Catalog Cat
         {
@@ -18,17 +21,18 @@ namespace HamburgerUI.Models
             {
                 return cat;
             }
-            set
-            {
-                cat = value;
-            }
+            //set
+            //{
+            //    cat = value;
+            //}
         }
 
         public Dictionary<Archive, ICollection<IFile>> FileSet { get; set; }
-        public Catalog(Archive archive, ICollection<IFile> files)
-        {
-            FileSet.Add(archive, files);
-        }
+                     
+        //public Catalog(Archive archive, ICollection<IFile> files)
+        //{
+        //    FileSet.Add(archive, files);
+        //}
         
     }
 }

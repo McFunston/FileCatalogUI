@@ -87,7 +87,7 @@
                 <!-- Click="{x:Bind ViewModel.GotoDetailsPage}" -->
                 <Button x:Name="AddButton"
                         Margin="16,30,16,0"
-                        Click="AddButton_Click"
+                        Click="{x:Bind ViewModel.AddButton}"
                         Content="Location"
                         RelativePanel.Below="parameterResizer"/>
 
@@ -98,7 +98,7 @@
                                   RelativePanel.RightOf="AddButton">
                     <TextBox MinWidth="150"
                          x:Name="AddFolderPath"
-                         Text="{Binding AddFolderPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding AddFolderPathText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          TextWrapping="Wrap" IsReadOnly="True">
                     </TextBox>
                     

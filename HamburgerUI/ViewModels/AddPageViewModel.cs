@@ -25,8 +25,8 @@ namespace HamburgerUI.ViewModels
                
         }
         
-        public Catalog Cat { get; set; }
-                
+        public Catalog CatRef { get; set; }
+                        
         private bool goEnabled = false;
         
         public bool GoEnabled
@@ -36,18 +36,18 @@ namespace HamburgerUI.ViewModels
         }
         
 
-        private string addFolderPath;
-        public string AddFolderPath
+        private string addFolderPathText;
+        public string AddFolderPathText
         {
-            get { return addFolderPath; }
-            set { Set(ref addFolderPath, value); if (addFolderPath?.Length > 0 && CatalogName?.Length > 0) GoEnabled = true; else GoEnabled = false; }
+            get { return addFolderPathText; }
+            set { Set(ref addFolderPathText, value); if (addFolderPathText?.Length > 0 && CatalogName?.Length > 0) GoEnabled = true; else GoEnabled = false; }
         }
 
         private string catalogName = "Default";
         public string CatalogName
         {
             get { return catalogName; }
-            set { Set(ref catalogName, value); if (AddFolderPath?.Length > 0 && catalogName?.Length > 0) GoEnabled = true; else GoEnabled = false; }
+            set { Set(ref catalogName, value); if (AddFolderPathText?.Length > 0 && catalogName?.Length > 0) GoEnabled = true; else GoEnabled = false; }
         }
 
 
@@ -71,13 +71,30 @@ namespace HamburgerUI.ViewModels
             args.Cancel = false;
             await Task.CompletedTask;
         }
+                
+        public UWPFolder NewUWPFolder { get; set; }
+        
+        public async void AddButton()
+        {
+
+            var fP = new FolderPicker();
+            fP.FileTypeFilter.Add("*");
+
+            var addFolder = await fP.PickSingleFolderAsync();
+            AddFolderPathText = addFolder.Path;
+            Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", addFolder);
+            NewUWPFolder = new UWPFolder(addFolder);
+        }
 
         public async void AddArchiveAsync()
         {
-            var addArchiveTry = await FileListFactory.GetFileListFromPathAsync(addFolderPath);
-            if (addArchiveTry.Success == true)
+            var addArchiveTry = await NewUWPFolder.GetFileList();
+            
+
+            if (addArchiveTry.Success)
             {
-                Cat.FileSet.Add(new Archive(catalogName), addArchiveTry.FileList);
+                CatRef = Catalog.Cat;
+                CatRef.FileSet.Add(new Archive(catalogName), addArchiveTry.FileList);
                 
             }
         }

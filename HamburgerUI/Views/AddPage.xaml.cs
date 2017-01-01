@@ -17,16 +17,16 @@ namespace HamburgerUI.Views
             this.InitializeComponent();
         }
 
-        private async void AddButton_Click(object sender, RoutedEventArgs e)
-        {
+        //private async void AddButton_Click(object sender, RoutedEventArgs e)
+        //{
             
-            var fP = new FolderPicker();
-            fP.FileTypeFilter.Add("*");
+        //    var fP = new FolderPicker();
+        //    fP.FileTypeFilter.Add("*");
 
-            var addFolderPath = await fP.PickSingleFolderAsync();
-            AddFolderPath.Text = addFolderPath.Path;
-            Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", addFolderPath);
+        //    var addFolderPath = await fP.PickSingleFolderAsync();
+        //    AddFolderPath.Text = addFolderPath.Path;
+        //    Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", addFolderPath);
 
-        }
+        //}
     }
 }

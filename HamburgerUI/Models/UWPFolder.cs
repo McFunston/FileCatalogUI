@@ -19,6 +19,7 @@ namespace HamburgerUI.Models
         }
         
         public StorageFolder Folder { get; set; }
+
         public async Task<FileListReturnType> GetFileList()
         {
             FileListReturnType fileListReturn = new FileListReturnType();
