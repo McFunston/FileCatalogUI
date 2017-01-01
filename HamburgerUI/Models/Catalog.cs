@@ -8,7 +8,7 @@ namespace HamburgerUI.Models
 {
     public sealed class Catalog
     {
-        private static readonly Catalog cat = new Catalog();
+        private static Catalog cat = new Catalog();
 
         private Catalog() { }
         
@@ -17,6 +17,10 @@ namespace HamburgerUI.Models
             get
             {
                 return cat;
+            }
+            set
+            {
+                cat = value;
             }
         }
 

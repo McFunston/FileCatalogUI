@@ -105,10 +105,15 @@
                 </controls:Resizer>
 
                 <Button x:Name="GoButton"
+                        Click="{x:Bind ViewModel.AddArchiveAsync}"
                         Margin="16,30,16,0"
                         Content="Begin"
                         IsEnabled="{Binding GoEnabled, Mode=OneWay}"
                         RelativePanel.Below="FolderPathResizer"/>
+                <GridView Margin="16,30,16,0"
+                          x:Name="testGrid"
+                          RelativePanel.Below="GoButton"
+                          DataContext="{Binding Cat}" />
             </RelativePanel>
 
             

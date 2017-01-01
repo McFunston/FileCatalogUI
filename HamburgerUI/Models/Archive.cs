@@ -12,8 +12,7 @@ namespace HamburgerUI.Models
     {
         public int Id { get; set; }
         public string Name { get; set; } //The name of the archive set (eg. "DVD #5")
-        public ICollection<IFile> Files { get; set; }
-
+        
         public Archive()
         {
         }

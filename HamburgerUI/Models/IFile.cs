@@ -9,9 +9,9 @@ namespace HamburgerUI.Models
     public interface IFile
     {
         string Name { get; set; }
-        DateTime DateCreated { get; set; }
+        DateTimeOffset DateCreated { get; set; }
         string Path { get; set; }
-        long Size { get; set; }
+        ulong Size { get; set; }
         string Extension { get; set; }
     }
 }

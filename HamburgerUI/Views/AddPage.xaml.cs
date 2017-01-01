@@ -25,6 +25,8 @@ namespace HamburgerUI.Views
 
             var addFolderPath = await fP.PickSingleFolderAsync();
             AddFolderPath.Text = addFolderPath.Path;
+            Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", addFolderPath);
+
         }
     }
 }

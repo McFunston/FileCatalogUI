@@ -1,4 +1,5 @@
 ﻿using HamburgerUI.Models;
+using HamburgerUI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +25,10 @@ namespace HamburgerUI.ViewModels
                
         }
         
-
+        public Catalog Cat { get; set; }
+                
         private bool goEnabled = false;
-
+        
         public bool GoEnabled
         {
             get { return goEnabled; }
@@ -68,6 +70,16 @@ namespace HamburgerUI.ViewModels
         {
             args.Cancel = false;
             await Task.CompletedTask;
+        }
+
+        public async void AddArchiveAsync()
+        {
+            var addArchiveTry = await FileListFactory.GetFileListFromPathAsync(addFolderPath);
+            if (addArchiveTry.Success == true)
+            {
+                Cat.FileSet.Add(new Archive(catalogName), addArchiveTry.FileList);
+                
+            }
         }
 
     }

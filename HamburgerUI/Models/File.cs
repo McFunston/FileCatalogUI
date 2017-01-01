@@ -14,9 +14,9 @@ namespace HamburgerUI.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTimeOffset DateCreated { get; set; }
         public string Path { get; set; }
-        public long Size { get; set; }
+        public ulong Size { get; set; }
         public string Extension { get; set; }
         public Archive archive { get; set; }
         /// <summary>
@@ -26,7 +26,7 @@ namespace HamburgerUI.Models
         /// <param name="dateCreated">File creation date</param>
         /// <param name="path">Full path</param>
         /// <param name="size">File size</param>
-        public File(string name, DateTime dateCreated, string path, long size, string extension)
+        public File(string name, DateTimeOffset dateCreated, string path, ulong size, string extension)
         {
             Name = name;
             DateCreated = dateCreated;
