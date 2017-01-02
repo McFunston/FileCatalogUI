@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamburgerUI.Models;
+using System;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -15,11 +16,14 @@ namespace HamburgerUI.Views
         public AddPage()
         {
             this.InitializeComponent();
+            
         }
+
+
 
         //private async void AddButton_Click(object sender, RoutedEventArgs e)
         //{
-            
+
         //    var fP = new FolderPicker();
         //    fP.FileTypeFilter.Add("*");
 

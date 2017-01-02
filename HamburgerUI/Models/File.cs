@@ -18,7 +18,7 @@ namespace HamburgerUI.Models
         public string Path { get; set; }
         public ulong Size { get; set; }
         public string Extension { get; set; }
-        public Archive archive { get; set; }
+        
         /// <summary>
         /// File constructor
         /// </summary>

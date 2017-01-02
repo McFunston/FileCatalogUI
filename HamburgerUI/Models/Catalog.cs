@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Template10.Common;
 
 namespace HamburgerUI.Models
 {
@@ -12,7 +14,11 @@ namespace HamburgerUI.Models
 
         private Catalog()
         {
-            FileSet = new Dictionary<Archive, ICollection<IFile>>();                       
+            Archives = new ObservableCollection<Archive>();
+            //Archive test = new Archive();
+            //File TestFile = new File("tester",DateTimeOffset.Now,"c:nnnnn", 100, ".txt");
+            //test.Name = "Test";
+            //test.FileSet.Add(TestFile);                     
         }
         
         public static Catalog Cat
@@ -27,7 +33,7 @@ namespace HamburgerUI.Models
             //}
         }
 
-        public Dictionary<Archive, ICollection<IFile>> FileSet { get; set; }
+        public ObservableCollection<Archive> Archives { get; set; }
                      
         //public Catalog(Archive archive, ICollection<IFile> files)
         //{

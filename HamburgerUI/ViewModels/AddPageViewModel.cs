@@ -2,6 +2,7 @@
 using HamburgerUI.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,9 +25,20 @@ namespace HamburgerUI.ViewModels
             }
                
         }
-        
-        public Catalog CatRef { get; set; }
-                        
+
+        private Catalog catRef;
+
+        public Catalog CatRef
+        {
+            get { return catRef; }
+            set { Set(ref catRef,  value); }
+        }
+
+
+
+
+
+
         private bool goEnabled = false;
         
         public bool GoEnabled
@@ -90,12 +102,15 @@ namespace HamburgerUI.ViewModels
         {
             var addArchiveTry = await NewUWPFolder.GetFileList();
             
-
             if (addArchiveTry.Success)
             {
+                Archive newArchive = new Archive();
+                newArchive.Name = catalogName;
+                newArchive.FileSet = addArchiveTry.FileList;
                 CatRef = Catalog.Cat;
-                CatRef.FileSet.Add(new Archive(catalogName), addArchiveTry.FileList);
-                
+                CatRef.Archives.Add(newArchive);            
+
+                                
             }
         }
 
