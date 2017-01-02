@@ -117,22 +117,21 @@
                           Margin="16,30,16,0"
                           x:Name="testList"
                           MinWidth="30"
+                          BorderBrush="Black" BorderThickness="2"
                           MinHeight="10"                          
                           RelativePanel.Below="GoButton"
+                          
                           >
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="Model:Archive" >
-                            <StackPanel>
-                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"/>
+                            <StackPanel IsTapEnabled="False">
+                                <TextBlock Width="50" Text="{x:Bind Name, Mode=OneWay}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>                    
                 </ListView>
-                
-
 
             </RelativePanel>
-
             
         </ScrollViewer>
 
