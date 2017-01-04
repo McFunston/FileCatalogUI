@@ -1,5 +1,4 @@
-﻿using HamburgerUI.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,24 +18,6 @@ namespace HamburgerUI.ViewModels
             {
                 Value = "Designtime value";
             }
-            CatRef = Catalog.Cat;
-            
-        }
-
-        private int selectedItem = 1;
-
-        public int SelectedItem
-        {
-            get { return selectedItem; }
-            set { Set(ref selectedItem, value); }
-        }
-        
-        private Catalog catRef;
-
-        public Catalog CatRef
-        {
-            get { return catRef; }
-            set { Set(ref catRef, value); }
         }
 
         private string _Value = "Default";
@@ -61,11 +42,6 @@ namespace HamburgerUI.ViewModels
         {
             args.Cancel = false;
             await Task.CompletedTask;
-        }
-
-        public void Remove(int Index)
-        {
-
         }
     }
 }

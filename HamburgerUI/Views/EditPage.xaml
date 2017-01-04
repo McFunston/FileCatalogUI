@@ -10,7 +10,6 @@
       xmlns:local="using:HamburgerUI.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:HamburgerUI.ViewModels"
-        xmlns:Model="using:HamburgerUI.Models"
       x:Name="ThisPage"
       mc:Ignorable="d">
 
@@ -75,32 +74,19 @@
 
                 <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0" BorderThickness="1">
 
-                    <ListView ItemsSource="{x:Bind ViewModel.CatRef.Archives, Mode=OneWay}"
-                          Margin="16,30,16,0"
-                          
-                          x:Name="testList"
-                          MinWidth="30"
-                          BorderBrush="Black" BorderThickness="2"
-                          MinHeight="10">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="Model:Archive" >
-                                <StackPanel >
-                                    <TextBlock Width="50" Text="{x:Bind Name, Mode=OneWay}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
+                    <ListView MinWidth="150" 
+                         MinHeight="62">
+
                     </ListView>
 
                 </controls:Resizer>
                 
                 <!-- Click="{x:Bind ViewModel.GotoDetailsPage}" -->
-                <Button x:Name="RemoveButton"
-                    Click="{Binding ViewModel.Remove}"
+                <Button x:Name="AddButton"
                     
                     Content="Remove"
                     RelativePanel.AlignBottomWith="parameterResizer"
                     RelativePanel.RightOf="parameterResizer" />
-                
               
 
             </RelativePanel>
