@@ -24,6 +24,7 @@ namespace HamburgerUI.ViewModels
                 CatalogName = "Designtime value";
             }
             CatRef = Catalog.Cat;
+            
         }
 
         private Catalog catRef;
@@ -33,8 +34,7 @@ namespace HamburgerUI.ViewModels
             get { return catRef; }
             set { Set(ref catRef,  value); }
         }
-
-
+        
         private bool catalogHasItems;
 
         public bool CatalogHasItems
@@ -42,10 +42,7 @@ namespace HamburgerUI.ViewModels
             get { return catalogHasItems; }
             set { Set(ref catalogHasItems,  value); }
         }
-
-
-
-
+        
         private bool goEnabled = false;
         
         public bool GoEnabled
@@ -115,7 +112,7 @@ namespace HamburgerUI.ViewModels
                 newArchive.Name = catalogName;
                 newArchive.FileSet = addArchiveTry.FileList;
                 //CatRef = Catalog.Cat;
-                CatRef.Archives.Add(newArchive);            
+                CatRef.Add(newArchive);            
 
                                 
             }

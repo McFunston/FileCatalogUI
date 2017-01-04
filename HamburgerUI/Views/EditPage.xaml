@@ -77,13 +77,14 @@
 
                     <ListView ItemsSource="{x:Bind ViewModel.CatRef.Archives, Mode=OneWay}"
                           Margin="16,30,16,0"
+                          
                           x:Name="testList"
                           MinWidth="30"
                           BorderBrush="Black" BorderThickness="2"
                           MinHeight="10">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="Model:Archive" >
-                                <StackPanel IsTapEnabled="False">
+                                <StackPanel >
                                     <TextBlock Width="50" Text="{x:Bind Name, Mode=OneWay}"/>
                                 </StackPanel>
                             </DataTemplate>
@@ -94,10 +95,12 @@
                 
                 <!-- Click="{x:Bind ViewModel.GotoDetailsPage}" -->
                 <Button x:Name="RemoveButton"
+                    Click="{Binding ViewModel.Remove}"
                     
                     Content="Remove"
                     RelativePanel.AlignBottomWith="parameterResizer"
                     RelativePanel.RightOf="parameterResizer" />
+                
               
 
             </RelativePanel>

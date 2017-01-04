@@ -21,6 +21,16 @@ namespace HamburgerUI.Models
             //test.FileSet.Add(TestFile);                     
         }
         
+        public void Add(Archive archive)
+        {
+            this.Archives.Add(archive);
+        }
+
+        public void Remove(int index)
+        {
+            this.Archives.RemoveAt(index);
+        }
+
         public static Catalog Cat
         {
             get
