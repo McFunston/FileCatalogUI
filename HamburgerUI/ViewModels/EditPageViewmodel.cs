@@ -19,6 +19,8 @@ namespace HamburgerUI.ViewModels
             {
                 Value = "Designtime value";
             }
+            CatRef = Catalog.Cat;
+            selectedArchive = new Archive();
         }
 
         private Archive selectedArchive;
@@ -26,9 +28,16 @@ namespace HamburgerUI.ViewModels
         public Archive SelectedArchive
         {
             get { return selectedArchive; }
-            set { selectedArchive = value; }
+            set { Set(ref selectedArchive, value); }
         }
 
+        private Catalog catRef;
+
+        public Catalog CatRef
+        {
+            get { return catRef; }
+            set { Set(ref catRef, value); }
+        }
 
         private string _Value = "Default";
         public string Value { get { return _Value; } set { Set(ref _Value, value); } }
@@ -46,6 +55,11 @@ namespace HamburgerUI.ViewModels
                 suspensionState[nameof(Value)] = Value;
             }
             await Task.CompletedTask;
+        }
+
+        public void Remove()
+        {
+            catRef.Remove(SelectedArchive);
         }
 
         public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)
