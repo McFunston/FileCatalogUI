@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamburgerUI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,15 @@ namespace HamburgerUI.ViewModels
                 Value = "Designtime value";
             }
         }
+
+        private Archive selectedArchive;
+
+        public Archive SelectedArchive
+        {
+            get { return selectedArchive; }
+            set { selectedArchive = value; }
+        }
+
 
         private string _Value = "Default";
         public string Value { get { return _Value; } set { Set(ref _Value, value); } }

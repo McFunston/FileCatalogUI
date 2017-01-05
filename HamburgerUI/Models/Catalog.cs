@@ -26,9 +26,9 @@ namespace HamburgerUI.Models
             this.Archives.Add(archive);
         }
 
-        public void Remove(int index)
+        public void Remove(Archive archiveToRemove)
         {
-            this.Archives.RemoveAt(index);
+            this.Archives.Remove(archiveToRemove);
         }
 
         public static Catalog Cat

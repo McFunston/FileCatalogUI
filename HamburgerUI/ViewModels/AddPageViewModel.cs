@@ -33,12 +33,7 @@ namespace HamburgerUI.ViewModels
             get { return catRef; }
             set { Set(ref catRef,  value); }
         }
-
-
-
-
-
-
+        
         private bool goEnabled = false;
         
         public bool GoEnabled
@@ -108,9 +103,8 @@ namespace HamburgerUI.ViewModels
                 newArchive.Name = catalogName;
                 newArchive.FileSet = addArchiveTry.FileList;
                 CatRef = Catalog.Cat;
-                CatRef.Archives.Add(newArchive);            
-
-                                
+                CatRef.Add(newArchive);            
+                                                
             }
         }
 
