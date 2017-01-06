@@ -101,10 +101,8 @@ namespace HamburgerUI.ViewModels
             {
                 Archive newArchive = new Archive();
                 newArchive.Name = catalogName;
-                newArchive.FileSet = addArchiveTry.FileList;
-                
-                CatRef.Add(newArchive);            
-                                                
+                newArchive.FileSet = addArchiveTry.FileList;                
+                CatRef.Add(newArchive);                                               
             }
         }
 

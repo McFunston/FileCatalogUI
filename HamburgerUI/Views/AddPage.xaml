@@ -129,10 +129,7 @@
                     </ListView.ItemTemplate>                    
                 </ListView>
                 
-
-
             </RelativePanel>
-
             
         </ScrollViewer>
 
