@@ -91,8 +91,7 @@
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                    </ListView>
-                    
+                    </ListView>                    
 
                 </controls:Resizer>
                 
@@ -102,7 +101,14 @@
                     Content="Remove"
                     RelativePanel.AlignBottomWith="parameterResizer"
                     RelativePanel.RightOf="parameterResizer" />
-                <TextBlock Text="{Binding SelectedArchive.Count}" Foreground="Aqua" MinWidth="30" RelativePanel.Below="RemoveButton"/>
+                <ListView RelativePanel.RightOf="parameterResizer">
+                    <StackPanel>
+                        
+                        <TextBlock Text="{Binding SelectedArchive.Count}" MinWidth="30"/>
+                        <TextBlock Text="{Binding SelectedArchive.DateCreated}"/>
+                    </StackPanel>
+                </ListView>
+                
 
             </RelativePanel>
 

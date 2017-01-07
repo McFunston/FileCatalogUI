@@ -14,10 +14,11 @@ namespace HamburgerUI.Models
         public int Id { get; set; }
         public string Name { get; set; } //The name of the archive set (eg. "DVD #5")
         public IList<IFile> FileSet { get; set; }
-                
-        public int? Count
+
+        private int count;        
+        public int Count
         {            
-            get { if (FileSet != null) return FileSet.Count; else return 0; }            
+            get { return count; }            
         }
 
         private DateTimeOffset dateCreated;
@@ -30,13 +31,22 @@ namespace HamburgerUI.Models
         
         public Archive()
         {
-            dateCreated = DateTimeOffset.Now;
+
         }
 
         public Archive(string name)
         {
             Name = name;
             dateCreated = DateTimeOffset.Now;
+            if (FileSet != null )  count = FileSet.Count;
+        }
+
+        public Archive(string name, IList<IFile> fileSet)
+        {
+            Name = name;
+            dateCreated = DateTimeOffset.Now;
+            FileSet = fileSet;
+            if (FileSet != null) count = FileSet.Count;            
         }
 
     }

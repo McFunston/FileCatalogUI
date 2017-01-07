@@ -42,7 +42,6 @@ namespace HamburgerUI.ViewModels
             set { Set(ref goEnabled,  value); }
         }
         
-
         private string addFolderPathText;
         public string AddFolderPathText
         {
@@ -56,8 +55,7 @@ namespace HamburgerUI.ViewModels
             get { return catalogName; }
             set { Set(ref catalogName, value); if (AddFolderPathText?.Length > 0 && catalogName?.Length > 0) GoEnabled = true; else GoEnabled = false; }
         }
-
-
+        
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
             CatalogName = (suspensionState.ContainsKey(nameof(CatalogName))) ? suspensionState[nameof(CatalogName)]?.ToString() : parameter?.ToString();
@@ -83,10 +81,8 @@ namespace HamburgerUI.ViewModels
         
         public async void AddButton()
         {
-
             var fP = new FolderPicker();
             fP.FileTypeFilter.Add("*");
-
             var addFolder = await fP.PickSingleFolderAsync();
             AddFolderPathText = addFolder.Path;
             Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", addFolder);
@@ -99,9 +95,7 @@ namespace HamburgerUI.ViewModels
             
             if (addArchiveTry.Success)
             {
-                Archive newArchive = new Archive();
-                newArchive.Name = catalogName;
-                newArchive.FileSet = addArchiveTry.FileList;                
+                Archive newArchive = new Archive(catalogName, addArchiveTry.FileList);          
                 CatRef.Add(newArchive);                                               
             }
         }

@@ -26,8 +26,7 @@ namespace HamburgerUI.Models
 
             var filesInFolder = await Folder.GetFilesAsync(CommonFileQuery.OrderByName);
             foreach (var currentFile in filesInFolder)
-            {
-                
+            {                
                 DateTimeOffset dateCreated = currentFile.DateCreated;
                 string name = currentFile.DisplayName;
                 string path = currentFile.Path;
@@ -37,10 +36,17 @@ namespace HamburgerUI.Models
                 File newFile = new File(name, dateCreated, path, size, extension);
                 fileList.Add(newFile);
             }
+
             fileListReturn.Success = true;
             fileListReturn.FileList = fileList;
 
             return fileListReturn;
         }
+
+        public void PickAFolder()
+        {
+
+        }
+
     }
 }
