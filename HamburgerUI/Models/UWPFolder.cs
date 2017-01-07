@@ -13,11 +13,6 @@ namespace HamburgerUI.Models
     public class UWPFolder : IFolder
     {
         List<IFile> fileList = new List<IFile>();
-
-        //public UWPFolder(StorageFolder folder)
-        //{
-        //    Folder = folder;
-        //}
         
         public async Task<string> FolderPathGrabberAsync()
         {
@@ -50,14 +45,7 @@ namespace HamburgerUI.Models
 
             fileListReturn.Success = true;
             fileListReturn.FileList = fileList;
-
             return fileListReturn;
         }
-
-        public void PickAFolder()
-        {
-
-        }
-
     }
 }

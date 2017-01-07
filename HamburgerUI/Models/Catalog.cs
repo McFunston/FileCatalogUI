@@ -59,11 +59,6 @@ namespace HamburgerUI.Models
         }
 
         public ObservableCollection<Archive> Archives { get; set; }
-                     
-        //public Catalog(Archive archive, ICollection<IFile> files)
-        //{
-        //    FileSet.Add(archive, files);
-        //}
-        
+
     }
 }
