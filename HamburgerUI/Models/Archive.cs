@@ -34,13 +34,6 @@ namespace HamburgerUI.Models
 
         }
 
-        public Archive(string name)
-        {
-            Name = name;
-            dateCreated = DateTimeOffset.Now;
-            if (FileSet != null )  count = FileSet.Count;
-        }
-
         public Archive(string name, IList<IFile> fileSet)
         {
             Name = name;
