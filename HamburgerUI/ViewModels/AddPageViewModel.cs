@@ -76,28 +76,18 @@ namespace HamburgerUI.ViewModels
             args.Cancel = false;
             await Task.CompletedTask;
         }
-                
-        public UWPFolder NewUWPFolder { get; set; }
+
+        UWPFolder newUWPFolder = new UWPFolder(); 
         
         public async void AddButton()
         {
-            var fP = new FolderPicker();
-            fP.FileTypeFilter.Add("*");
-            var addFolder = await fP.PickSingleFolderAsync();
-            AddFolderPathText = addFolder.Path;
-            Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", addFolder);
-            NewUWPFolder = new UWPFolder(addFolder);
+            await catRef.GetPathAsync(newUWPFolder);
+            AddFolderPathText = catRef.PathToAdd;
         }
 
         public async void AddArchiveAsync()
         {
-            var addArchiveTry = await NewUWPFolder.GetFileList();
-            
-            if (addArchiveTry.Success)
-            {
-                Archive newArchive = new Archive(catalogName, addArchiveTry.FileList);          
-                CatRef.Add(newArchive);                                               
-            }
+            await catRef.AddFolderAsync(catalogName, newUWPFolder);
         }
 
     }

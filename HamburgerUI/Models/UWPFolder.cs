@@ -14,10 +14,10 @@ namespace HamburgerUI.Models
     {
         List<IFile> fileList = new List<IFile>();
 
-        public UWPFolder(StorageFolder folder)
-        {
-            Folder = folder;
-        }
+        //public UWPFolder(StorageFolder folder)
+        //{
+        //    Folder = folder;
+        //}
         
         public async Task<string> FolderPathGrabberAsync()
         {

@@ -29,12 +29,12 @@ namespace HamburgerUI.Models
             this.Archives.Add(archive);
         }
 
-        public async void GetPathAsync(IFolder iFolder)
+        public async Task GetPathAsync(IFolder iFolder)
         {
-            var pathToAdd = await iFolder.FolderPathGrabberAsync();
+            pathToAdd = await iFolder.FolderPathGrabberAsync();
         }
 
-        public async void AddFolderAsync(string archiveName, IFolder iFolder)
+        public async Task AddFolderAsync(string archiveName, IFolder iFolder)
         {
             var fileListReturn = await iFolder.GetFileList();
             if (fileListReturn.Success)
