@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.Storage.Search;
 
 namespace HamburgerUI.Models
@@ -18,6 +19,16 @@ namespace HamburgerUI.Models
             Folder = folder;
         }
         
+        public async Task<string> FolderPathGrabberAsync()
+        {
+            var fP = new FolderPicker();
+            fP.FileTypeFilter.Add("*");
+            var addFolder = await fP.PickSingleFolderAsync();
+            Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", addFolder);
+            Folder = addFolder;
+            return addFolder.Path;
+        }
+
         public StorageFolder Folder { get; set; }
 
         public async Task<FileListReturnType> GetFileList()

@@ -12,18 +12,37 @@ namespace HamburgerUI.Models
     {
         private static Catalog cat = new Catalog();
 
+        private string pathToAdd;
+        public string PathToAdd
+        {
+            get { return pathToAdd; }
+            set { pathToAdd = value; }
+        }
+
         private Catalog()
         {
             Archives = new ObservableCollection<Archive>();
-            //Archive test = new Archive();
-            //File TestFile = new File("tester",DateTimeOffset.Now,"c:nnnnn", 100, ".txt");
-            //test.Name = "Test";
-            //test.FileSet.Add(TestFile);                     
         }
-        
+
         public void Add(Archive archive)
         {
             this.Archives.Add(archive);
+        }
+
+        public async void GetPathAsync(IFolder iFolder)
+        {
+            var pathToAdd = await iFolder.FolderPathGrabberAsync();
+        }
+
+        public async void AddFolderAsync(string archiveName, IFolder iFolder)
+        {
+            var fileListReturn = await iFolder.GetFileList();
+            if (fileListReturn.Success)
+            {
+                Archive archiveToAdd = new Archive(archiveName, fileListReturn.FileList);
+                this.Add(archiveToAdd);
+            }
+            pathToAdd = null;
         }
 
         public void Remove(Archive archiveToRemove)
@@ -37,10 +56,6 @@ namespace HamburgerUI.Models
             {
                 return cat;
             }
-            //set
-            //{
-            //    cat = value;
-            //}
         }
 
         public ObservableCollection<Archive> Archives { get; set; }

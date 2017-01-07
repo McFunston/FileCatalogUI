@@ -7,5 +7,6 @@ namespace HamburgerUI.Models
     public interface IFolder
     {
         Task<FileListReturnType> GetFileList();
+        Task<string> FolderPathGrabberAsync();
     }
 }
