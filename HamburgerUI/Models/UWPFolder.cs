@@ -12,7 +12,7 @@ namespace HamburgerUI.Models
 {
     public class UWPFolder : IFolder
     {
-        List<IFile> fileList = new List<IFile>();
+        List<File> fileList = new List<File>();
         
         public async Task<string> FolderPathGrabberAsync()
         {

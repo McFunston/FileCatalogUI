@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamburgerUI.Services.RepositoryServices;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -19,14 +20,22 @@ namespace HamburgerUI.Models
             set { pathToAdd = value; }
         }
 
+        private EFRepository repo = new EFRepository();
+
         private Catalog()
         {
-            Archives = new ObservableCollection<Archive>();
+            var repoArchives = repo.Load();
+            if (repoArchives != null)
+            {
+                Archives = new ObservableCollection<Archive>(repoArchives);
+            }
+            else Archives = new ObservableCollection<Archive>();            
         }
 
-        public void Add(Archive archive)
+        public async Task Add(Archive archive)
         {
             this.Archives.Add(archive);
+            await repo.Add(archive);
         }
 
         public async Task GetPathAsync(IFolder iFolder)
@@ -40,7 +49,8 @@ namespace HamburgerUI.Models
             if (fileListReturn.Success)
             {
                 Archive archiveToAdd = new Archive(archiveName, fileListReturn.FileList);
-                this.Add(archiveToAdd);
+                await this.Add(archiveToAdd);
+
             }
             pathToAdd = null;
         }
@@ -48,6 +58,7 @@ namespace HamburgerUI.Models
         public void Remove(Archive archiveToRemove)
         {
             this.Archives.Remove(archiveToRemove);
+            repo.Remove(archiveToRemove);
         }
 
         public static Catalog Cat

@@ -24,7 +24,7 @@ namespace HamburgerUI.Services
             var GetFileListTask = Task.Run(() =>
             {
                 var folder = new DirectoryInfo(@path);
-                var fileList = new List<IFile>();
+                var fileList = new List<HamburgerUI.Models.File>();
                                 
                 try
                 {

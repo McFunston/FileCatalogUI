@@ -10,7 +10,7 @@ namespace HamburgerUI.Services
     public class FileListReturnType
     {
         public bool Success { get; set; }
-        public List<IFile> FileList { get; set; }
+        public List<File> FileList { get; set; }
         public string ErrorMessage { get; set; }
     }
 }

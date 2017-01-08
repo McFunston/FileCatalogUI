@@ -97,6 +97,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20170108185653_MyFirstMigration.cs" />
+    <Compile Include="Migrations\20170108185653_MyFirstMigration.designer.cs">
+      <DependentUpon>20170108185653_MyFirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\EFRepositoryContextModelSnapshot.cs" />
     <Compile Include="Models\Archive.cs" />
     <Compile Include="Models\Catalog.cs" />
     <Compile Include="Models\File.cs" />

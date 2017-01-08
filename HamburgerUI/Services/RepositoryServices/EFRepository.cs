@@ -10,18 +10,33 @@ namespace HamburgerUI.Services.RepositoryServices
 {
     class EFRepository : IRepository
     {
-        EFRepositoryContext EFR = new EFRepositoryContext();
-
-        public Catalog Load()
+       
+        public List<Archive> Load()
         {
-            throw new NotImplementedException();
+            using (var EFR = new EFRepositoryContext())
+            {
+                var EFRList = EFR.Archives.ToList<Archive>();
+                return EFRList;
+            }
+                
         }
 
-        public void Save(Catalog catalog)
+        public async Task Add(Archive archive)
         {
-            throw new NotImplementedException();
-            //EFR.Catalogs.Add(catalog);
-            //EFR.SaveChanges();
+            using (var EFR = new EFRepositoryContext())
+            {
+                EFR.Archives.Add(archive);
+                await EFR.SaveChangesAsync();
+            }
+        }
+
+        public void Remove (Archive archive)
+        {
+            using (var EFR = new EFRepositoryContext())
+            {
+                EFR.Archives.Remove(archive);
+                EFR.SaveChanges();
+            }
         }
 
         public void Search(string searchString)

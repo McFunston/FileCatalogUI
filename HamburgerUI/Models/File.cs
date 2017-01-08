@@ -40,9 +40,9 @@ namespace HamburgerUI.Models
         /// ToString override for unit tests
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return $"Name: {Name} Date Created: {DateCreated} Path: {Path} Size: {Size}";
-        }
+        //public override string ToString()
+        //{
+        //    return $"Name: {Name} Date Created: {DateCreated} Path: {Path} Size: {Size}";
+        //}
     }
 }

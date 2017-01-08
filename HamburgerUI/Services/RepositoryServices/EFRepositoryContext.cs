@@ -12,7 +12,11 @@ namespace HamburgerUI.Services.RepositoryServices
     {
         public EFRepositoryContext() : base()
         {
+        }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Filename=DisCat.db");
         }
 
         public DbSet<File> Files { get; set; }

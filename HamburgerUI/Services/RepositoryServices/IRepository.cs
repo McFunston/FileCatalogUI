@@ -9,8 +9,8 @@ namespace HamburgerUI.Services.RepositoryServices
 {
     interface IRepository
     {
-        void Save(Catalog catalog);
-        Catalog Load();
+        Task Add(Archive archive);
+        List<Archive> Load();
         void Search(string searchString);
     }
 }

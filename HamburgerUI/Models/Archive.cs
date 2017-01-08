@@ -13,7 +13,7 @@ namespace HamburgerUI.Models
     {
         public int Id { get; set; }
         public string Name { get; set; } //The name of the archive set (eg. "DVD #5")
-        public IList<IFile> FileSet { get; set; }
+        public IList<File> FileSet { get; set; }
 
         private int count;        
         public int Count
@@ -34,7 +34,7 @@ namespace HamburgerUI.Models
 
         }
 
-        public Archive(string name, IList<IFile> fileSet)
+        public Archive(string name, IList<File> fileSet)
         {
             Name = name;
             dateCreated = DateTimeOffset.Now;

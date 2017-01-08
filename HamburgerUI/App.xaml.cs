@@ -9,6 +9,8 @@ using System.Linq;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Controls;
 using HamburgerUI.Models;
+using Microsoft.EntityFrameworkCore;
+using HamburgerUI.Services.RepositoryServices;
 
 namespace HamburgerUI
 {
@@ -35,6 +37,11 @@ namespace HamburgerUI
             AutoExtendExecutionSession = true;
 
             #endregion
+
+            using (var EFR = new EFRepositoryContext())
+            {
+                EFR.Database.Migrate();
+            }
         }
 
         public override UIElement CreateRootElement(IActivatedEventArgs e)
