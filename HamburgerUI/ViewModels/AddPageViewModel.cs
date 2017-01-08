@@ -79,10 +79,12 @@ namespace HamburgerUI.ViewModels
 
         UWPFolder newUWPFolder = new UWPFolder(); 
         
+        
         public async void AddButton()
         {
             await catRef.GetPathAsync(newUWPFolder);
             AddFolderPathText = catRef.PathToAdd;
+            
         }
 
         public async void AddArchiveAsync()
