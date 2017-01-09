@@ -16,6 +16,7 @@ namespace HamburgerUI.Services.RepositoryServices
             using (var EFR = new EFRepositoryContext())
             {
                 var EFRList = EFR.Archives.ToList<Archive>();
+                            
                 return EFRList;
             }
                 
@@ -25,6 +26,11 @@ namespace HamburgerUI.Services.RepositoryServices
         {
             using (var EFR = new EFRepositoryContext())
             {
+                foreach (var fi in archive.Files)
+                {
+                    EFR.Files.Add(fi);
+                }
+                
                 EFR.Archives.Add(archive);
                 await EFR.SaveChangesAsync();
             }

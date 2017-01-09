@@ -8,9 +8,10 @@ using HamburgerUI.Services.RepositoryServices;
 namespace HamburgerUI.Migrations
 {
     [DbContext(typeof(EFRepositoryContext))]
-    partial class EFRepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20170109013419_SecondMigration")]
+    partial class SecondMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752");

@@ -101,6 +101,10 @@
     <Compile Include="Migrations\20170108185653_MyFirstMigration.designer.cs">
       <DependentUpon>20170108185653_MyFirstMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20170109013419_SecondMigration.cs" />
+    <Compile Include="Migrations\20170109013419_SecondMigration.designer.cs">
+      <DependentUpon>20170109013419_SecondMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\EFRepositoryContextModelSnapshot.cs" />
     <Compile Include="Models\Archive.cs" />
     <Compile Include="Models\Catalog.cs" />

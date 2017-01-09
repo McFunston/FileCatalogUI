@@ -18,8 +18,8 @@ namespace HamburgerUI.Services.RepositoryServices
         {
             optionsBuilder.UseSqlite("Filename=DisCat.db");
         }
-
-        public DbSet<File> Files { get; set; }
+               
         public DbSet<Archive> Archives { get; set; }
+        public DbSet<File> Files { get; set; }
     }
 }
