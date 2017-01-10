@@ -11,6 +11,6 @@ namespace HamburgerUI.Services.RepositoryServices
     {
         Task Add(Archive archive);
         List<Archive> Load();
-        void Search(string searchString);
+        List<File> Search(string searchString);
     }
 }
