@@ -16,7 +16,7 @@ namespace HamburgerUI.Services.RepositoryServices
             using (var EFR = new EFRepositoryContext())
             {
                 var EFRList = EFR.Archives.ToList<Archive>();
-                            
+                var EFRFiles = EFR.Files.ToList<File>();            
                 return EFRList;
             }
                 
@@ -45,9 +45,13 @@ namespace HamburgerUI.Services.RepositoryServices
             }
         }
 
-        public void Search(string searchString)
+        public List<File> Search(string searchString)
         {
-            throw new NotImplementedException();
+            using (var EFR = new EFRepositoryContext())
+            {
+                var returnList = EFR.Files.Where(f => f.Name.Contains(searchString));
+                return returnList.ToList<File>();
+            }            
         }
     }
 }

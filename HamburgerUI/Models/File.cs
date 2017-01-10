@@ -20,6 +20,10 @@ namespace HamburgerUI.Models
         public string Extension { get; set; }
         public virtual Archive Archive { get; set; }
 
+        public File()
+        {
+
+        }
         /// <summary>
         /// File constructor
         /// </summary>
