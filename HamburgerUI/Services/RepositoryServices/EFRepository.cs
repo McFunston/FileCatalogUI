@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HamburgerUI.Services.RepositoryServices
 {
-    class EFRepository : IRepository
+    public class EFRepository : IRepository
     {
        
         public List<Archive> Load()
@@ -49,8 +49,9 @@ namespace HamburgerUI.Services.RepositoryServices
         {
             using (var EFR = new EFRepositoryContext())
             {
-                var returnList = EFR.Files.Where(f => f.Name.Contains(searchString));
-                return returnList.ToList<File>();
+                //var returnList = EFR.Files.Where (f => f.Name.ToLower().Contains(searchString.ToLower()));
+                var returnList = from f in EFR.Files where f.Name.ToLower().Contains(searchString.ToLower()) select f;
+                return returnList.ToList();
             }            
         }
     }

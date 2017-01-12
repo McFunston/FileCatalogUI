@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Navigation;
 using HamburgerUI.Models;
+using HamburgerUI.Services.RepositoryServices;
 
 namespace HamburgerUI.ViewModels
 {
@@ -19,7 +20,25 @@ namespace HamburgerUI.ViewModels
             }
             
         }
-                
+
+        private List<File> searchResults;
+
+        public List<File> SearchResults
+        {
+            get { return searchResults; }
+            set { Set(ref searchResults, value); }
+        }
+        
+        public EFRepository EFR { get; set; }
+
+        private string searchString;
+
+        public string SearchString
+        {
+            get { return searchString; }
+            set { Set(ref searchString,  value); }
+        }
+
         string _Value = "";
         public string Value { get { return _Value; } set { Set(ref _Value, value); } }
 
@@ -46,6 +65,13 @@ namespace HamburgerUI.ViewModels
             args.Cancel = false;
             await Task.CompletedTask;
         }
+
+        public void SearchCatalog()
+        {
+            EFR = new EFRepository();
+            SearchResults = new List<File>();
+            SearchResults = EFR.Search(SearchString);
+        }           
 
         public void GotoDetailsPage() =>
             NavigationService.Navigate(typeof(Views.DetailPage), Value);
