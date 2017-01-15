@@ -41,6 +41,7 @@ namespace HamburgerUI.Services.RepositoryServices
             using (var EFR = new EFRepositoryContext())
             {
                 EFR.Archives.Remove(archive);
+                EFR.Files.RemoveRange(archive.Files);
                 EFR.SaveChanges();
             }
         }
