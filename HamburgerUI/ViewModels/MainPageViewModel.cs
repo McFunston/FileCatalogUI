@@ -71,6 +71,7 @@ namespace HamburgerUI.ViewModels
             EFR = new EFRepository();
             SearchResults = new List<File>();
             SearchResults = EFR.Search(SearchString);
+            //Console.WriteLine(SearchResults[0].Archive.Name);
         }           
 
         public void GotoDetailsPage() =>
