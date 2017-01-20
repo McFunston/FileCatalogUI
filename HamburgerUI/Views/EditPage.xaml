@@ -75,7 +75,7 @@
 
                 <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0" BorderThickness="1">
 
-                    <ListView ItemsSource="{x:Bind ViewModel.CatRef.Archives, Mode=OneWay}"
+                    <ListView ItemsSource="{x:Bind ViewModel.Archives, Mode=OneWay}"
                           Margin="16,30,16,0"
                           x:Name="testList"
                           MinWidth="30"

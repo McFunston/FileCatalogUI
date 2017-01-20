@@ -2,6 +2,7 @@
 using HamburgerUI.Services.RepositoryServices;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,16 @@ namespace HamburgerUI.ViewModels
             {
                 Value = "Designtime value";
             }
-            CatRef = Catalog.Cat;
+            Archives = new ObservableCollection<Archive>(Repo.Load());
             selectedArchive = new Archive();
+        }
+
+        private ObservableCollection<Archive> archives;
+
+        public ObservableCollection<Archive> Archives
+        {
+            get { return archives; }
+            set { Set(ref archives, value); }
         }
 
         private Archive selectedArchive;
@@ -31,17 +40,10 @@ namespace HamburgerUI.ViewModels
             set { Set(ref selectedArchive, value); }
         }
 
-        private Catalog catRef;
-        public Catalog CatRef
-        {
-            get { return catRef; }
-            set { Set(ref catRef, value); }
-        }
-
         private string _Value = "Default";
         public string Value { get { return _Value; } set { Set(ref _Value, value); } }
 
-        private EFRepository repo;
+        private EFRepository repo = new EFRepository();
         public EFRepository Repo
         {
             get { return repo; }
@@ -65,7 +67,8 @@ namespace HamburgerUI.ViewModels
 
         public void Remove()
         {
-            catRef.Remove(SelectedArchive);
+            Repo.Remove(selectedArchive);
+            Archives = new ObservableCollection<Archive>(Repo.Load());
         }
 
         public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)
