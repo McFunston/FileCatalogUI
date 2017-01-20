@@ -14,10 +14,9 @@ namespace HamburgerUI.Services.RepositoryServices
         public List<Archive> Load()
         {
             using (var EFR = new EFRepositoryContext())
-            {
-                
+            {                
                 var EFRList = EFR.Archives.ToList<Archive>();
-                var EFRFiles = EFR.Files.ToList<File>();                            
+                //var EFRFiles = EFR.Files.ToList<File>();
                 return EFRList;
             }
                 
@@ -42,6 +41,7 @@ namespace HamburgerUI.Services.RepositoryServices
             using (var EFR = new EFRepositoryContext())
             {
                 EFR.Archives.Remove(archive);
+                var EFRFiles = EFR.Files.ToList<File>();
                 EFR.Files.RemoveRange(archive.Files);
                 EFR.SaveChanges();
             }

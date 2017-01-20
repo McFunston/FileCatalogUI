@@ -13,7 +13,7 @@ namespace HamburgerUI.Models
     {
         public int Id { get; set; }
         public string Name { get; set; } //The name of the archive set (eg. "DVD #5")
-        public List<File> Files { get; set; }
+        public virtual List<File> Files { get; set; } //virtual for lazy loading
 
         private int count;        
         public int Count

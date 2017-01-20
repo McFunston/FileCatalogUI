@@ -1,5 +1,6 @@
 ﻿using HamburgerUI.Models;
 using HamburgerUI.Services;
+using HamburgerUI.Services.RepositoryServices;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,17 +24,25 @@ namespace HamburgerUI.ViewModels
             {
                 CatalogName = "Designtime value";
             }
-            CatRef = Catalog.Cat;
+            Archives = new ObservableCollection<Archive>(Repo.Load());
+
         }
 
-        private Catalog catRef;
+        private ObservableCollection<Archive> archives;
 
-        public Catalog CatRef
+        public ObservableCollection<Archive> Archives
         {
-            get { return catRef; }
-            set { Set(ref catRef,  value); }
+            get { return archives; }
+            set { Set(ref archives, value); }
+        }     
+
+        private EFRepository repo = new EFRepository();
+        public EFRepository Repo
+        {
+            get { return repo; }
+            set { Set(ref repo, value); }
         }
-        
+
         private bool goEnabled = false;
         
         public bool GoEnabled
@@ -77,19 +86,30 @@ namespace HamburgerUI.ViewModels
             await Task.CompletedTask;
         }
 
-        UWPFolder newUWPFolder = new UWPFolder(); 
-        
-        
-        public async void AddButton()
+        UWPFolder newUWPFolder = new UWPFolder();
+
+        public async void GetFolder()
         {
-            await catRef.GetPathAsync(newUWPFolder);
-            AddFolderPathText = catRef.PathToAdd;
-            
+            await newUWPFolder.FolderPathGrabberAsync();
+            AddFolderPathText = newUWPFolder.Folder.Name;
         }
 
-        public async void AddArchiveAsync()
+        public async void AddButton()
         {
-            await catRef.AddFolderAsync(catalogName, newUWPFolder);
+            await newUWPFolder.FolderPathGrabberAsync();
+            AddFolderPathText = newUWPFolder.Folder.Name;
+        }
+
+        public async Task AddArchiveAsync()
+        {
+            var fileListReturn = await newUWPFolder.GetFileList();
+
+            if (fileListReturn.Success)
+            {
+                Archive archiveToAdd = new Archive(CatalogName, fileListReturn.FileList);
+                await Repo.Add(archiveToAdd);                
+            }
+            Archives = new ObservableCollection<Archive>(Repo.Load());
         }
 
     }

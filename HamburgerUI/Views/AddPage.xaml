@@ -86,17 +86,17 @@
                 </controls:Resizer>
                 
                 <!-- Click="{x:Bind ViewModel.GotoDetailsPage}" -->
-                <Button x:Name="AddButton"
+                <Button x:Name="LocationButton"
                         Margin="16,30,16,0"
-                        Click="{x:Bind ViewModel.AddButton}"
+                        Click="{x:Bind ViewModel.GetFolder}"
                         Content="Location"
                         RelativePanel.Below="parameterResizer"/>
 
                 <controls:Resizer x:Name="FolderPathResizer" 
                                   Margin="16,30,16,0" 
                                    
-                                  RelativePanel.AlignTopWith="AddButton"
-                                  RelativePanel.RightOf="AddButton">
+                                  RelativePanel.AlignTopWith="LocationButton"
+                                  RelativePanel.RightOf="LocationButton">
                     <TextBox MinWidth="150"
                          x:Name="AddFolderPath"
                          Text="{Binding AddFolderPathText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -113,7 +113,7 @@
                         RelativePanel.Below="FolderPathResizer"/>
 
 
-                <ListView ItemsSource="{x:Bind ViewModel.CatRef.Archives, Mode=OneWay}"
+                <ListView ItemsSource="{x:Bind ViewModel.Archives, Mode=OneWay}"
                           Margin="16,30,16,0"
                           x:Name="testList"
                           MinWidth="30"

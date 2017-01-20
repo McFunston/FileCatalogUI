@@ -103,9 +103,9 @@
                       ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="Model:File">
-                        <StackPanel>
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{x:Bind Name, Mode=OneWay}"/>
-                            <TextBlock Text="{x:Bind Archive, Mode=OneWay}"/>
+                            <TextBlock Text="{x:Bind Archive.Name, Mode=OneWay}" HorizontalAlignment="Right"/>
                         </StackPanel>                                                
                     </DataTemplate>
                 </ListView.ItemTemplate>

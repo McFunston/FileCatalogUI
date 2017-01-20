@@ -1,4 +1,5 @@
 ﻿using HamburgerUI.Models;
+using HamburgerUI.Services.RepositoryServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,6 @@ namespace HamburgerUI.ViewModels
         }
 
         private Archive selectedArchive;
-
         public Archive SelectedArchive
         {
             get { return selectedArchive; }
@@ -32,7 +32,6 @@ namespace HamburgerUI.ViewModels
         }
 
         private Catalog catRef;
-
         public Catalog CatRef
         {
             get { return catRef; }
@@ -41,6 +40,13 @@ namespace HamburgerUI.ViewModels
 
         private string _Value = "Default";
         public string Value { get { return _Value; } set { Set(ref _Value, value); } }
+
+        private EFRepository repo;
+        public EFRepository Repo
+        {
+            get { return repo; }
+            set { Set(ref repo, value); }
+        }
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
