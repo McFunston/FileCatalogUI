@@ -111,7 +111,6 @@
     </Compile>
     <Compile Include="Migrations\EFRepositoryContextModelSnapshot.cs" />
     <Compile Include="Models\Archive.cs" />
-    <Compile Include="Models\Catalog.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\IFile.cs" />
     <Compile Include="Models\IFolder.cs" />
