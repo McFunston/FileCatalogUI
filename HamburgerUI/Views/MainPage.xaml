@@ -25,17 +25,24 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!--  TODO: change properties for narrow view  -->
-                        <Setter Target="stateTextBox.Text" Value="Narrow Visual State" />
+                        <!--  Properties for narrow view  -->
+
+                        <Setter Target="SearchResults.ItemTemplate" Value="{StaticResource NarrowSearchResults}" />
+                        <Setter Target="SearchResults.(RelativePanel.AlignLeftWith)" Value="parameterResizer" />
+                        <Setter Target="SearchResults.(RelativePanel.Below)" Value="parameterResizer" />
+
                     </VisualState.Setters>
                 </VisualState>
+                
                 <VisualState x:Name="VisualStateNormal">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!--  TODO: change properties for normal view  -->
-                        <Setter Target="stateTextBox.Text" Value="Normal Visual State" />
+                        <!--  Properties for normal view  -->
+
+                        <Setter Target="SearchResults.ItemTemplate" Value="{StaticResource NarrowSearchResults}" />
+                        <Setter Target="SearchResults.(RelativePanel.RightOf)" Value="submitButton" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="VisualStateWide">
@@ -43,8 +50,11 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!--  TODO: change properties for wide view  -->
-                        <Setter Target="stateTextBox.Text" Value="Wide Visual State" />
+                        
+                        <!--  Properties for wide view  -->
+
+                        <Setter Target="SearchResults.ItemTemplate" Value="{StaticResource WideSearchResults}" />
+                        <Setter Target="SearchResults.(RelativePanel.RightOf)" Value="submitButton" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -77,15 +87,15 @@
                 <TextBox MinWidth="150"
                          MinHeight="62"
                          Header="Filename to search for"
+                         x:Name="SearchBox"
                          Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          TextWrapping="Wrap">
                     <Interactivity:Interaction.Behaviors>
 
                         <!--  enable submit on enter key  -->
                         <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="GotoDetailsPage" TargetObject="{Binding}" />
+                            <Core:CallMethodAction MethodName="SearchCatalog" TargetObject="{Binding}" />
                         </Behaviors:KeyBehavior>
-
 
                     </Interactivity:Interaction.Behaviors>
                 </TextBox>
@@ -95,28 +105,18 @@
             <Button x:Name="submitButton"
                     Click="{x:Bind ViewModel.SearchCatalog}"
                     Content="Search"
+                    Margin="0,0,20,0"
                     RelativePanel.AlignBottomWith="parameterResizer"
                     RelativePanel.RightOf="parameterResizer" />
 
-            <ListView RelativePanel.RightOf="submitButton"
+            <ListView              
                       x:Name="SearchResults"
-                      ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="Model:File">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{x:Bind Name, Mode=OneWay}"/>
-                            <TextBlock Text="{x:Bind Archive.Name, Mode=OneWay}" HorizontalAlignment="Right"/>
-                        </StackPanel>                                                
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                      ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
+                      ItemTemplate="{StaticResource WideSearchResults}"
+                      >
+
                 
             </ListView>
-
-            <TextBlock x:Name="stateTextBox"
-                       Margin="16,16,0,0"
-                       RelativePanel.AlignLeftWith="parameterResizer"
-                       RelativePanel.Below="parameterResizer"
-                       Text="Current Visual State" />
 
         </RelativePanel>
 

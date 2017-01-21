@@ -1,6 +1,7 @@
 <common:BootStrapper x:Class="HamburgerUI.App"
                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:Model="using:HamburgerUI.Models"
                      xmlns:common="using:Template10.Common">
 
     <Application.Resources>
@@ -8,6 +9,56 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles\Custom.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate x:Key="NarrowSearchResults">
+                <StackPanel Style="{StaticResource FoundItemStyle}">
+                    <TextBlock Text="File Name:" Style="{StaticResource ResultHeaders}"/>
+                    <TextBlock Text="{Binding Name, Mode=OneWay}" Style="{StaticResource FileStyle}"/>
+                    <TextBlock Text="Found in Archive:" Style="{StaticResource ResultHeaders}"/>
+                    <TextBlock Text="{Binding Archive.Name, Mode=OneWay}" Style="{StaticResource ArchiveStyle}"/>
+                    <TextBlock Text="Path:" Style="{StaticResource ResultHeaders}"/>
+                    <TextBlock Text="{Binding Path, Mode=OneWay}" Style="{StaticResource ArchiveStyle}"/>
+                </StackPanel>
+            </DataTemplate>
+
+            <DataTemplate x:Key="WideSearchResults">
+                <StackPanel Style="{StaticResource FoundItemStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="File Name:" Width="200" Style="{StaticResource ResultHeaders}"/>
+                        <TextBlock Text="Found in Archive:" Width="200" Style="{StaticResource ResultHeaders}"/>
+                        <TextBlock Text="Path:" Width="200" Style="{StaticResource ResultHeaders}"/>
+                        <TextBlock Text="Date Created" Width="200" Style="{StaticResource ResultHeaders}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name, Mode=OneWay}" Style="{StaticResource FileStyle}" Width="200"/>
+                        <TextBlock Text="{Binding Archive.Name, Mode=OneWay}" Style="{StaticResource ArchiveStyle}" Width="200"/>
+                        <TextBlock Text="{Binding Path, Mode=OneWay}" Style="{StaticResource ArchiveStyle}" Width="200"/>
+                        <TextBlock Text="{Binding DateCreated, Mode=OneWay}" Style="{StaticResource ArchiveStyle}" Width="200"/>
+                    </StackPanel>
+                </StackPanel>
+            </DataTemplate>
+
+            <Style TargetType="StackPanel" x:Key="FoundItemStyle">
+                <Setter Property="Margin" Value="0,10,10,10"/>
+                <Setter Property="Orientation" Value="Vertical"/>
+            </Style>
+
+            <Style TargetType="TextBlock" x:Name="FileStyle">
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+                <Setter Property="Margin" Value="10,0,0,0" />
+            </Style>
+            
+            <Style TargetType="TextBlock" x:Name="ArchiveStyle">
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="FontStyle" Value="Italic"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+                <Setter Property="Margin" Value="10,0,0,0" />
+            </Style>
+            <Style TargetType="TextBlock" x:Name="ResultHeaders">
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Margin" Value="10,0,0,0" />
+            </Style>
 
             <!--  custom resources go here  -->
 
