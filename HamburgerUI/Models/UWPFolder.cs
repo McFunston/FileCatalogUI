@@ -34,7 +34,7 @@ namespace HamburgerUI.Models
             foreach (var currentFile in filesInFolder)
             {                
                 DateTimeOffset dateCreated = currentFile.DateCreated;
-                string name = currentFile.DisplayName;
+                string name = currentFile.Name;
                 string path = currentFile.Path;
                 var properties = await currentFile.GetBasicPropertiesAsync();
                 ulong size = properties.Size;

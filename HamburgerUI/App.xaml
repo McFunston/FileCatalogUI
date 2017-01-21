@@ -25,13 +25,13 @@
                 <StackPanel Style="{StaticResource FoundItemStyle}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="File Name:" Width="200" Style="{StaticResource ResultHeaders}"/>
-                        <TextBlock Text="Found in Archive:" Width="200" Style="{StaticResource ResultHeaders}"/>
+                        <TextBlock Text="Found in Archive:" Width="150" Style="{StaticResource ResultHeaders}"/>
                         <TextBlock Text="Path:" Width="200" Style="{StaticResource ResultHeaders}"/>
                         <TextBlock Text="Date Created" Width="200" Style="{StaticResource ResultHeaders}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name, Mode=OneWay}" Style="{StaticResource FileStyle}" Width="200"/>
-                        <TextBlock Text="{Binding Archive.Name, Mode=OneWay}" Style="{StaticResource ArchiveStyle}" Width="200"/>
+                        <TextBlock Text="{Binding Archive.Name, Mode=OneWay}" Style="{StaticResource ArchiveStyle}" Width="150"/>
                         <TextBlock Text="{Binding Path, Mode=OneWay}" Style="{StaticResource ArchiveStyle}" Width="200"/>
                         <TextBlock Text="{Binding DateCreated, Mode=OneWay}" Style="{StaticResource ArchiveStyle}" Width="200"/>
                     </StackPanel>

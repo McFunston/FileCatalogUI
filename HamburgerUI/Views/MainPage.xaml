@@ -105,6 +105,7 @@
             <Button x:Name="submitButton"
                     Click="{x:Bind ViewModel.SearchCatalog}"
                     Content="Search"
+                    Width="65"
                     Margin="0,0,20,0"
                     RelativePanel.AlignBottomWith="parameterResizer"
                     RelativePanel.RightOf="parameterResizer" />
@@ -112,6 +113,7 @@
             <Button x:Name="ClearButton"
                     Click="{x:Bind ViewModel.Clear}"
                     Content="Clear"
+                    Width="65"
                     Margin="0,20,20,20"
                     RelativePanel.AlignLeftWith="submitButton"
                     RelativePanel.Below="submitButton" />
