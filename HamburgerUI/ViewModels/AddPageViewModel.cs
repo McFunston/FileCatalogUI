@@ -91,7 +91,10 @@ namespace HamburgerUI.ViewModels
         public async void GetFolder()
         {
             await newUWPFolder.FolderPathGrabberAsync();
-            AddFolderPathText = newUWPFolder.Folder.Name;
+            if (newUWPFolder.Folder != null)
+            {
+                AddFolderPathText = newUWPFolder.Folder.Name;
+            }            
         }
 
         public async void AddButton()

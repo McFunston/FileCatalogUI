@@ -19,9 +19,13 @@ namespace HamburgerUI.Models
             var fP = new FolderPicker();
             fP.FileTypeFilter.Add("*");
             var addFolder = await fP.PickSingleFolderAsync();
-            Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", addFolder);
-            Folder = addFolder;
-            return addFolder.Path;
+            if (addFolder != null)
+            {
+                Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", addFolder);
+                Folder = addFolder;
+                return addFolder.Path;
+            }
+            else return null;
         }
 
         public StorageFolder Folder { get; set; }

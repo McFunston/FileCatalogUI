@@ -42,7 +42,10 @@ namespace HamburgerUI.Services.RepositoryServices
             {
                 EFR.Archives.Remove(archive);
                 var EFRFiles = EFR.Files.ToList<File>();
-                EFR.Files.RemoveRange(archive.Files);
+                if (archive.Files != null)
+                {
+                    EFR.Files.RemoveRange(archive.Files);
+                }                
                 EFR.SaveChanges();
             }
         }

@@ -29,7 +29,7 @@
 
                         <Setter Target="SearchResults.ItemTemplate" Value="{StaticResource NarrowSearchResults}" />
                         <Setter Target="SearchResults.(RelativePanel.AlignLeftWith)" Value="parameterResizer" />
-                        <Setter Target="SearchResults.(RelativePanel.Below)" Value="parameterResizer" />
+                        <Setter Target="SearchResults.(RelativePanel.Below)" Value="ClearButton" />
 
                     </VisualState.Setters>
                 </VisualState>
@@ -89,6 +89,7 @@
                          Header="Filename to search for"
                          x:Name="SearchBox"
                          Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         PlaceholderText="Search"                       
                          TextWrapping="Wrap">
                     <Interactivity:Interaction.Behaviors>
 
@@ -114,8 +115,8 @@
                     Click="{x:Bind ViewModel.Clear}"
                     Content="Clear"
                     Width="65"
-                    Margin="0,20,20,20"
-                    RelativePanel.AlignLeftWith="submitButton"
+                    Margin="16,20,20,20"
+                    RelativePanel.AlignLeftWith="parameterResizer"
                     RelativePanel.Below="submitButton"
                     Style="{StaticResource RoundButtonStyle}"/>
 
