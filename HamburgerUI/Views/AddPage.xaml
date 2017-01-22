@@ -110,8 +110,8 @@
                         Click="{x:Bind ViewModel.AddArchiveAsync}"
                         Margin="16,30,16,0"
                         Content="Begin"
-                        IsEnabled="{Binding GoEnabled, Mode=OneWay}"
                         RelativePanel.Below="FolderPathResizer"
+                        Visibility="{Binding GoEnabled, Mode=OneWay}"
                         Style="{StaticResource RoundButtonStyle}"/>
 
 
