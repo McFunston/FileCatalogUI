@@ -108,7 +108,7 @@
                     Width="65"
                     Margin="0,0,20,0"
                     RelativePanel.AlignBottomWith="parameterResizer"
-                    RelativePanel.RightOf="parameterResizer" />
+                    RelativePanel.RightOf="parameterResizer" Style="{StaticResource RoundButtonStyle}" />
             
             <Button x:Name="ClearButton"
                     Click="{x:Bind ViewModel.Clear}"
@@ -116,7 +116,8 @@
                     Width="65"
                     Margin="0,20,20,20"
                     RelativePanel.AlignLeftWith="submitButton"
-                    RelativePanel.Below="submitButton" />
+                    RelativePanel.Below="submitButton"
+                    Style="{StaticResource RoundButtonStyle}"/>
 
             <ListView              
                       x:Name="SearchResults"

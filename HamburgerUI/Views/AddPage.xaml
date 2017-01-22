@@ -90,7 +90,8 @@
                         Margin="16,30,16,0"
                         Click="{x:Bind ViewModel.GetFolder}"
                         Content="Location"
-                        RelativePanel.Below="parameterResizer"/>
+                        RelativePanel.Below="parameterResizer"
+                        Style="{StaticResource RoundButtonStyle}"/>
 
                 <controls:Resizer x:Name="FolderPathResizer" 
                                   Margin="16,30,16,0" 
@@ -110,7 +111,8 @@
                         Margin="16,30,16,0"
                         Content="Begin"
                         IsEnabled="{Binding GoEnabled, Mode=OneWay}"
-                        RelativePanel.Below="FolderPathResizer"/>
+                        RelativePanel.Below="FolderPathResizer"
+                        Style="{StaticResource RoundButtonStyle}"/>
 
 
                 <ListView ItemsSource="{x:Bind ViewModel.Archives, Mode=OneWay}"

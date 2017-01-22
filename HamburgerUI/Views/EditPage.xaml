@@ -97,10 +97,11 @@
                 
                 <!-- Click="{x:Bind ViewModel.GotoDetailsPage}" -->
                 <Button x:Name="RemoveButton"
-                    Click="{x:Bind ViewModel.Remove}"
-                    Content="Remove"
-                    RelativePanel.AlignBottomWith="parameterResizer"
-                    RelativePanel.RightOf="parameterResizer" />
+                        Click="{x:Bind ViewModel.Remove}"
+                        Content="Remove"
+                        RelativePanel.AlignBottomWith="parameterResizer"
+                        RelativePanel.RightOf="parameterResizer"
+                        Style="{StaticResource RoundButtonStyle}"/>
                 <ListView RelativePanel.RightOf="parameterResizer">
                     <StackPanel>
                         
