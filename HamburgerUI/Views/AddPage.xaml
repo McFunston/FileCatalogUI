@@ -90,16 +90,17 @@
                         Margin="16,30,16,0"
                         Click="{x:Bind ViewModel.GetFolder}"
                         Content="Location"
-                        RelativePanel.Below="parameterResizer"
+                        RelativePanel.RightOf="parameterResizer"
+                        RelativePanel.AlignBottomWith="parameterResizer"
                         Style="{StaticResource RoundButtonStyle}"/>
 
                 <controls:Resizer x:Name="FolderPathResizer" 
-                                  Margin="16,30,16,0" 
-                                   
-                                  RelativePanel.AlignTopWith="LocationButton"
+                                  Margin="16,16,16,0" 
+                                  RelativePanel.AlignTopWith="parameterResizer"
                                   RelativePanel.RightOf="LocationButton">
                     <TextBox MinWidth="150"
                          x:Name="AddFolderPath"
+                         Header="Path to Add"
                          Text="{Binding AddFolderPathText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          TextWrapping="Wrap" IsReadOnly="True">
                     </TextBox>
