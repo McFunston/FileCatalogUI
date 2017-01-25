@@ -118,6 +118,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FileListFactory.cs" />
     <Compile Include="Services\FileListReturnType.cs" />
+    <Compile Include="Services\Repository.cs" />
     <Compile Include="Services\RepositoryServices\EFRepository.cs" />
     <Compile Include="Services\RepositoryServices\EFRepositoryContext.cs" />
     <Compile Include="Services\RepositoryServices\IRepository.cs" />

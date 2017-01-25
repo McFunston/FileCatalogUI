@@ -60,8 +60,10 @@
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="Margin" Value="10,0,0,0" />
             </Style>
-            
-            
+
+            <Style TargetType="ListView">
+                <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
+            </Style>
             
             <Style x:Key="RoundButtonStyle" TargetType="Button">
                 <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
