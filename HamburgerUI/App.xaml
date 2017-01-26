@@ -61,9 +61,10 @@
                 <Setter Property="Margin" Value="10,0,0,0" />
             </Style>
 
-            <Style TargetType="ListView">
+            <!--<Style TargetType="ListView">
                 <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
-            </Style>
+                <Setter Property="BorderThickness" Value="1"/>
+            </Style>-->
             
             <Style x:Key="RoundButtonStyle" TargetType="Button">
                 <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>

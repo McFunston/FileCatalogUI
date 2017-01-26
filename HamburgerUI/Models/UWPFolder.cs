@@ -16,9 +16,19 @@ namespace HamburgerUI.Models
         
         public async Task<string> FolderPathGrabberAsync()
         {
+            StorageFolder addFolder;
             var fP = new FolderPicker();
             fP.FileTypeFilter.Add("*");
-            var addFolder = await fP.PickSingleFolderAsync();
+            try
+            {
+                addFolder = await fP.PickSingleFolderAsync();
+            }
+
+            catch (Exception e)
+            {
+                addFolder=null;
+            }
+
             if (addFolder != null)
             {
                 Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", addFolder);
@@ -34,22 +44,41 @@ namespace HamburgerUI.Models
         {
             FileListReturnType fileListReturn = new FileListReturnType();
 
-            var filesInFolder = await Folder.GetFilesAsync(CommonFileQuery.OrderByName);
-            foreach (var currentFile in filesInFolder)
-            {                
-                DateTimeOffset dateCreated = currentFile.DateCreated;
-                string name = currentFile.Name;
-                string path = currentFile.Path;
-                var properties = await currentFile.GetBasicPropertiesAsync();
-                ulong size = properties.Size;
-                string extension = currentFile.FileType;
-                File newFile = new File(name, dateCreated, path, size, extension);
-                fileList.Add(newFile);
+            IReadOnlyList<StorageFile> filesInFolder;
+            try
+            {
+                filesInFolder = await Folder.GetFilesAsync(CommonFileQuery.OrderByName);
+            }
+            
+            catch (Exception e)
+            {
+                fileListReturn.Success = false;
+                fileListReturn.ErrorMessage = e.Message;
+                filesInFolder = null;
             }
 
-            fileListReturn.Success = true;
-            fileListReturn.FileList = fileList;
-            return fileListReturn;
+            if (filesInFolder != null)
+            {
+                foreach (var currentFile in filesInFolder)
+                {
+                    DateTimeOffset dateCreated = currentFile.DateCreated;
+                    string name = currentFile.Name;
+                    string path = currentFile.Path;
+                    var properties = await currentFile.GetBasicPropertiesAsync();
+                    ulong size = properties.Size;
+                    string extension = currentFile.FileType;
+                    File newFile = new File(name, dateCreated, path, size, extension);
+                    fileList.Add(newFile);
+                }
+            }
+            if (filesInFolder != null && filesInFolder.Count>0)
+            {
+                fileListReturn.Success = true;
+                fileListReturn.FileList = fileList;
+                return fileListReturn;
+            }
+            else return null;            
+            
         }
     }
 }

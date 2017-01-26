@@ -115,19 +115,21 @@
                         Style="{StaticResource RoundButtonStyle}"/>
                 
                 <TextBlock Text="Archives Currently Added"
-                           x:Name="ListHeader"
+                           x:Name="ListHeader"                           
                            RelativePanel.Below="GoButton"
                            FontWeight="Bold"
-                           Margin="16,16,16,0"/>
+                           Margin="18,16,16,10"/>
 
                 <ListView ItemsSource="{x:Bind ViewModel.Archives, Mode=OneWay}"
                           Margin="16,0,16,0"
                           x:Name="testList"
                           MinWidth="30"
-                          MinHeight="10"                          
+                          MinHeight="10"
+                          
                           RelativePanel.Below="ListHeader"
                           RelativePanel.AlignLeftWith="ListHeader"
                           >
+
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="Model:Archive" >
                             <StackPanel>

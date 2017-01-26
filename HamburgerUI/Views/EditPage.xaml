@@ -72,22 +72,30 @@
                        RelativePanel.AlignRightWithPanel="True"
                        RelativePanel.Below="pageHeader">
 
+                <TextBlock Text="Archives Currently Added"
+                           x:Name="ListHeader"                           
+                           FontWeight="Bold"
+                           Margin="18,16,16,10"/>
 
                 <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0" BorderThickness="1">
 
                     <ListView ItemsSource="{x:Bind ViewModel.Archives, Mode=OneWay}"
-                          Margin="16,30,16,0"
+                          Margin="0,30,16,0"
                           x:Name="testList"
                           MinWidth="30"
                               SelectedItem="{Binding SelectedArchive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           MinHeight="10"                          
-                          RelativePanel.Below="GoButton"
+                          RelativePanel.Below=""
                           >
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="Model:Archive" >
                                 <StackPanel>
-                                    <TextBlock Text="{x:Bind Name, Mode=OneWay}"/>
-                                    
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Name: " FontWeight="Bold" Margin="-10,0,5,0"/>
+                                        <TextBlock Text="{x:Bind Name, Mode=OneWay}" FontStyle="Italic" Margin="0,0,0,0"/>
+                                        <TextBlock Text=", Files added: " FontWeight="Bold" Margin="0,0,5,0"/>
+                                        <TextBlock Text="{x:Bind Count, Mode=OneWay}" FontStyle="Italic" Margin="0,0,5,0"/>
+                                    </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -102,15 +110,8 @@
                         RelativePanel.AlignBottomWith="parameterResizer"
                         RelativePanel.RightOf="parameterResizer"
                         Style="{StaticResource RoundButtonStyle}"/>
-                <ListView RelativePanel.RightOf="parameterResizer">
-                    <StackPanel>
-                        
-                        <TextBlock Text="{Binding SelectedArchive.Count}" MinWidth="30"/>
-                        <TextBlock Text="{Binding SelectedArchive.DateCreated}"/>
-                    </StackPanel>
-                </ListView>
-                
 
+                
             </RelativePanel>
 
             
