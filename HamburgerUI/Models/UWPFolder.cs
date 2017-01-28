@@ -1,6 +1,7 @@
 ﻿using HamburgerUI.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,31 @@ using Windows.Storage.Search;
 
 namespace HamburgerUI.Models
 {
-    public class UWPFolder : IFolder
+    public class UWPFolder : IFolder, INotifyPropertyChanged
     {
         List<File> fileList = new List<File>();
-        
+
+        int numberOfFiles;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private double percentDone;
+              
+        public double PercentDone
+        {
+            get { return percentDone; }
+            set { percentDone = value; NotifyPropertyChanged("PercentDone"); }
+        }
+
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
         public async Task<string> FolderPathGrabberAsync()
         {
             StorageFolder addFolder;
@@ -34,6 +56,7 @@ namespace HamburgerUI.Models
                 Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", addFolder);
                 Folder = addFolder;
                 return addFolder.Path;
+                
             }
             else return null;
         }
@@ -59,6 +82,7 @@ namespace HamburgerUI.Models
 
             if (filesInFolder != null)
             {
+                numberOfFiles = filesInFolder.Count;
                 foreach (var currentFile in filesInFolder)
                 {
                     DateTimeOffset dateCreated = currentFile.DateCreated;
@@ -69,7 +93,9 @@ namespace HamburgerUI.Models
                     string extension = currentFile.FileType;
                     File newFile = new File(name, dateCreated, path, size, extension);
                     fileList.Add(newFile);
+                    PercentDone = ((double)fileList.Count / (double)numberOfFiles) * 100;
                 }
+                PercentDone = 0;
             }
             if (filesInFolder != null && filesInFolder.Count>0)
             {

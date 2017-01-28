@@ -106,6 +106,15 @@
                     
                 </controls:Resizer>
 
+                <ProgressBar Maximum="100"
+                             x:Name="AddProgress"
+                             Value="{x:Bind ViewModel.PercentDone, Mode=OneWay}" 
+                             Height="25"                             
+                             Margin="16,0,16,16"
+                             RelativePanel.Below="GoButton"
+                             RelativePanel.AlignLeftWith="parameterResizer"
+                             RelativePanel.AlignRightWith="FolderPathResizer"/> 
+
                 <Button x:Name="GoButton"
                         Click="{x:Bind ViewModel.AddArchiveAsync}"
                         Margin="16,0,16,16"
@@ -116,9 +125,9 @@
                 
                 <TextBlock Text="Archives Currently Added"
                            x:Name="ListHeader"                           
-                           RelativePanel.Below="GoButton"
+                           RelativePanel.Below="AddProgress"
                            FontWeight="Bold"
-                           Margin="18,16,16,10"/>
+                           Margin="27,16,16,10"/>
 
                 <ListView ItemsSource="{x:Bind ViewModel.Archives, Mode=OneWay}"
                           Margin="16,0,16,0"
@@ -134,7 +143,7 @@
                         <DataTemplate x:DataType="Model:Archive" >
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Name: " FontWeight="Bold" Margin="-10,0,5,0"/>
+                                    <TextBlock Text="Name: " FontWeight="Bold" Margin="0,0,5,0"/>
                                     <TextBlock Text="{x:Bind Name, Mode=OneWay}" FontStyle="Italic" Margin="0,0,0,0"/>
                                     <TextBlock Text=", Files added: " FontWeight="Bold" Margin="0,0,5,0"/>
                                     <TextBlock Text="{x:Bind Count, Mode=OneWay}" FontStyle="Italic" Margin="0,0,5,0"/>

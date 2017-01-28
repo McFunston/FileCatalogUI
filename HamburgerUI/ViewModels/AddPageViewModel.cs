@@ -26,6 +26,11 @@ namespace HamburgerUI.ViewModels
             }
             Archives = new ObservableCollection<Archive>(Repo.Load());
 
+            newUWPFolder = new UWPFolder();
+
+            newUWPFolder.PropertyChanged += percentDoneChanged;
+
+            this.PropertyChanged += OnInputValuesChanged;
         }
 
         private ObservableCollection<Archive> archives;
@@ -55,16 +60,26 @@ namespace HamburgerUI.ViewModels
         public string AddFolderPathText
         {
             get { return addFolderPathText; }
-            set { Set(ref addFolderPathText, value); if (addFolderPathText?.Length > 0 && CatalogName?.Length > 0) GoEnabled = true; else GoEnabled = false; }
+            set { Set(ref addFolderPathText, value);}
         }
 
         private string catalogName = "Default";
         public string CatalogName
         {
             get { return catalogName; }
-            set { Set(ref catalogName, value); if (AddFolderPathText?.Length > 0 && catalogName?.Length > 0) GoEnabled = true; else GoEnabled = false; }
+            set { Set(ref catalogName, value);}
         }
-        
+
+        private double percentDone;
+
+        public double PercentDone
+        {
+            get { return percentDone; }
+            set { Set(ref percentDone, value); }
+        }
+
+        UWPFolder newUWPFolder;
+
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
             CatalogName = (suspensionState.ContainsKey(nameof(CatalogName))) ? suspensionState[nameof(CatalogName)]?.ToString() : parameter?.ToString();
@@ -86,8 +101,27 @@ namespace HamburgerUI.ViewModels
             await Task.CompletedTask;
         }
 
-        UWPFolder newUWPFolder = new UWPFolder();
+        private void OnInputValuesChanged(object sender, System.EventArgs e)
+        {
+            Archive archiveWithMatchingName = new Archive();
 
+            if (CatalogName != null)
+            {
+                archiveWithMatchingName = Archives.FirstOrDefault(archiveToCheck => archiveToCheck.Name.Equals(CatalogName));
+            }
+            
+            bool match = false;
+
+            if (archiveWithMatchingName != null) match = true; 
+
+            if (addFolderPathText?.Length > 0 && CatalogName?.Length > 0 && !(match)) GoEnabled = true; else GoEnabled = false;
+        }
+        
+        private void percentDoneChanged(object sender, System.EventArgs e)
+        {
+            PercentDone = newUWPFolder.PercentDone;
+        }
+              
         public async void GetFolder()
         {
             await newUWPFolder.FolderPathGrabberAsync();
