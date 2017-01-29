@@ -55,6 +55,7 @@
 
                         <Setter Target="SearchResults.ItemTemplate" Value="{StaticResource WideSearchResults}" />
                         <Setter Target="SearchResults.(RelativePanel.RightOf)" Value="submitButton" />
+                        <Setter Target="WideResultsHeader.Visibility" Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -119,13 +120,23 @@
                     RelativePanel.AlignLeftWith="parameterResizer"
                     RelativePanel.Below="submitButton"
                     Style="{StaticResource RoundButtonStyle}"/>
-
+            <StackPanel Orientation="Horizontal" 
+                        RelativePanel.AlignTopWithPanel="True"
+                        RelativePanel.RightOf="submitButton"
+                        Margin="10,20,20,20"
+                        Visibility="Collapsed"
+                        x:Name="WideResultsHeader">
+                <TextBlock Text="File Name:" Width="200" Style="{StaticResource ResultHeaders}"/>
+                <TextBlock Text="Found in Archive:" Width="150" Style="{StaticResource ResultHeaders}"/>
+                <TextBlock Text="Path:" Width="200" Style="{StaticResource ResultHeaders}"/>
+                <TextBlock Text="Date Created" Width="200" Style="{StaticResource ResultHeaders}"/>
+            </StackPanel>
             <ListView              
                       x:Name="SearchResults"
+                RelativePanel.Below="WideResultsHeader"
                       ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
                       ItemTemplate="{StaticResource WideSearchResults}"
                       >
-
                 
             </ListView>
 

@@ -153,6 +153,7 @@
                     <TextBlock Margin="0,12,24,12"
                                LineHeight="24"
                                x:Name="SecondLine"
+                               TextWrapping="Wrap"
                                RelativePanel.Below="FirstLine"
                                Text="If you still don't trust DisCat (and you probably shouldn't) I invite you to come to his GitHub page at https://github.com/McFunston/FileCatalogUI"/>
                     <Image Source="ms-appx:///Assets/DisCa-Shady.png" RelativePanel.Below="SecondLine" Margin="0,12,24,12" Width="200"/>
