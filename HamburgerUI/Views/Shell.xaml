@@ -21,7 +21,7 @@
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Width="48"
                                 Height="48"
-                                Symbol="BrowsePhotos" />
+                                Symbol="Zoom" />
                             <TextBlock Margin="12,0,0,0"
                                VerticalAlignment="Center"
                                Text="Search the Catalog" />
