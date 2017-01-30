@@ -15,7 +15,7 @@
       mc:Ignorable="d">
 
     <Page.DataContext>
-        <vm:EditPageViewmodel x:Name="ViewModel" />
+        <vm:EditPageViewmodel x:Name="ViewModel"/>
     </Page.DataContext>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
