@@ -1,0 +1,7 @@
+DisCat will not open or read the contents of any file that you choose to index. It reads file names, creation dates, paths, sizes, and extensions only. 
+
+It creates one SQLite database that is stored locally on your computer (DisCat.db) containing only the indexed attributes of folders that you have chosen to catalog. The author of the software makes no ownership claims whatsoever to either the database file or any of its contents. It is the sole property, and responsibility of the user of this software.
+
+The software will not (and can not) transmit your data by any electronic means to either the author, or third parties. 
+
+If you have any concerns about the information that DisCat collects you are welcome (and encouraged) to visit its GitHub repository at https://github.com/McFunston/FileCatalogUI
