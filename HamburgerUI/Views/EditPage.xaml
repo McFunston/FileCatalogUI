@@ -77,15 +77,15 @@
                            FontWeight="Bold"
                            Margin="18,16,16,10"/>
 
-                <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0" BorderThickness="1">
+                <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0" BorderThickness="1" RelativePanel.Below="ListHeader">
 
                     <ListView ItemsSource="{x:Bind ViewModel.Archives, Mode=OneWay}"
-                          Margin="0,30,16,0"
+                          Margin="0,0,16,0"
                           x:Name="testList"
                           MinWidth="30"
                               SelectedItem="{Binding SelectedArchive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           MinHeight="10"                          
-                          RelativePanel.Below=""
+                          
                           >
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="Model:Archive" >
@@ -110,7 +110,6 @@
                         RelativePanel.AlignBottomWith="parameterResizer"
                         RelativePanel.RightOf="parameterResizer"
                         Style="{StaticResource RoundButtonStyle}"/>
-
                 
             </RelativePanel>
 
