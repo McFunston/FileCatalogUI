@@ -54,10 +54,13 @@ namespace HamburgerUI.Services.RepositoryServices
         {
             using (var EFR = new EFRepositoryContext())
             {
-                //var returnList = EFR.Files.Where (f => f.Name.ToLower().Contains(searchString.ToLower()));
-                var returnList = from f in EFR.Files.Include("Archive") where f.Name.ToLower().Contains(searchString.ToLower()) select f;
-                
-                return returnList.ToList();
+                //var returnList = EFR.Files.Where(f => f.Name.ToLower().Contains(searchString.ToLower())).SelectMany();
+                //var returnList = from f in EFR.Files.Include("Archive") where f.Name.ToLower().Contains(searchString.ToLower()) select f;
+                var returnList = from f in EFR.Files where f.Name.ToLower().Contains(searchString.ToLower()) select f;
+                //var returnList = EFR.Files.Where(f => f.Name == searchString).Select(x => x).Include("Archive") ;
+
+                //List<File> returnList = EFR.Files.Include("Archive").Where(f => f.Name == searchString).ToList();
+                return returnList.Include("Archive").ToList();
             }            
         }
     }
