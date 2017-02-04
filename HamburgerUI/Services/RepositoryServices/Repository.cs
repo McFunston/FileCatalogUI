@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HamburgerUI.Services
 {
-    class Repository
+    public class Repository : IRepository
     {
         IRepository Repo;
         public Repository(IRepository repo)

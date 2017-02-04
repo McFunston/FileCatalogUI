@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HamburgerUI.Services.RepositoryServices
 {
-    interface IRepository
+    public interface IRepository
     {
         Task Add(Archive archive);
         void Remove(Archive archive);

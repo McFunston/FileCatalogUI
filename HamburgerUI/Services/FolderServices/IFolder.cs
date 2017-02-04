@@ -8,6 +8,6 @@ namespace HamburgerUI.Models
     {
         Task<FileListReturnType> GetFileList();
         Task<string> FolderPathGrabberAsync();
-        double PercentDone { get; set; }
+        double PercentDone { get;}
     }
 }
