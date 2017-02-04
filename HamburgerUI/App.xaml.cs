@@ -21,6 +21,9 @@ namespace HamburgerUI
     [Bindable]
     sealed partial class App : BootStrapper
     {
+
+        public ServicesController ServCon { get; set; }
+
         public App()
         {
             InitializeComponent();
@@ -43,7 +46,12 @@ namespace HamburgerUI
             {
                 EFR.Database.Migrate();
             }
-            
+
+            UWPFolder folder = new UWPFolder();
+            EFRepository EFRepo = new EFRepository();
+
+            ServCon = ServicesController.Instance;
+            if (false == ServCon.IsConfigured) ServCon.Configure(EFRepo, folder);                    
                         
         }
 

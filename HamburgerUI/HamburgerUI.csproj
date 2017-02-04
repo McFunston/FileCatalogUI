@@ -118,7 +118,6 @@
     <Compile Include="Models\Archive.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\IFile.cs" />
-    <Compile Include="Services\FolderServices\FolderService.cs" />
     <Compile Include="Services\FolderServices\IFolder.cs" />
     <Compile Include="Services\FolderServices\UWPFolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

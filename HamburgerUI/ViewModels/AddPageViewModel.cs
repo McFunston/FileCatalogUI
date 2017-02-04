@@ -24,11 +24,16 @@ namespace HamburgerUI.ViewModels
             {
                 CatalogName = "Designtime value";
             }
+
+            Repo = ServicesController.Instance.Repo;
+
             Archives = new ObservableCollection<Archive>(Repo.Load());
 
-            newUWPFolder = new UWPFolder();
+            newFolder = ServicesController.Instance.FServe;
 
-            newUWPFolder.PropertyChanged += percentDoneChanged;
+            newFolder.PropertyChanged += percentDoneChanged;            
+
+            PercentDone = newFolder.PercentDone;            
 
             this.PropertyChanged += OnInputValuesChanged;
         }
@@ -41,12 +46,12 @@ namespace HamburgerUI.ViewModels
             set { Set(ref archives, value); }
         }     
 
-        private EFRepository repo = new EFRepository();
-        public EFRepository Repo
+        private IRepository repo;
+        public IRepository Repo
         {
             get { return repo; }
             set { Set(ref repo, value); }
-        }
+        }               
 
         private bool goEnabled = false;
         
@@ -78,7 +83,7 @@ namespace HamburgerUI.ViewModels
             set { Set(ref percentDone, value); }
         }
 
-        UWPFolder newUWPFolder;
+        IFolder newFolder;
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
@@ -119,27 +124,27 @@ namespace HamburgerUI.ViewModels
         
         private void percentDoneChanged(object sender, System.EventArgs e)
         {
-            PercentDone = newUWPFolder.PercentDone;
+            PercentDone = newFolder.PercentDone;
         }
               
         public async void GetFolder()
         {
-            await newUWPFolder.FolderPathGrabberAsync();
-            if (newUWPFolder.Folder != null)
+            await newFolder.FolderPathGrabberAsync();
+            if (newFolder.FolderName != null)
             {
-                AddFolderPathText = newUWPFolder.Folder.Name;
+                AddFolderPathText = newFolder.FolderName;
             }            
         }
 
         public async void AddButton()
         {
-            await newUWPFolder.FolderPathGrabberAsync();
-            AddFolderPathText = newUWPFolder.Folder.Name;
+            await newFolder.FolderPathGrabberAsync();
+            AddFolderPathText = newFolder.FolderName;
         }
 
         public async Task AddArchiveAsync()
         {
-            var fileListReturn = await newUWPFolder.GetFileList();
+            var fileListReturn = await newFolder.GetFileList();
 
             if (fileListReturn.Success)
             {

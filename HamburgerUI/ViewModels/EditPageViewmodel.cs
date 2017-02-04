@@ -1,4 +1,5 @@
 ﻿using HamburgerUI.Models;
+using HamburgerUI.Services;
 using HamburgerUI.Services.RepositoryServices;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,9 @@ namespace HamburgerUI.ViewModels
             {
                 Value = "Designtime value";
             }
+            Repo = ServicesController.Instance.Repo;
             Archives = new ObservableCollection<Archive>(Repo.Load());
-            selectedArchive = new Archive();
+            selectedArchive = new Archive();            
         }
 
         private ObservableCollection<Archive> archives;
@@ -43,8 +45,8 @@ namespace HamburgerUI.ViewModels
         private string _Value = "Default";
         public string Value { get { return _Value; } set { Set(ref _Value, value); } }
 
-        private EFRepository repo = new EFRepository();
-        public EFRepository Repo
+        private IRepository repo;
+        public IRepository Repo
         {
             get { return repo; }
             set { Set(ref repo, value); }

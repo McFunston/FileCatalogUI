@@ -13,20 +13,35 @@ namespace HamburgerUI.Models
 {
     public class UWPFolder : IFolder, INotifyPropertyChanged
     {
+
+        public UWPFolder()
+        {
+            PercentDone = 0;
+        }
+
         List<File> fileList = new List<File>();
 
         int numberOfFiles;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public string FolderName
+        {            
+            get {
+                if ( this.Folder != null && this.Folder.Name != null)
+                    return this.Folder.Name;
+                else return null;
+            }
+        }
+        
         private double percentDone;
-              
+                      
         public double PercentDone
         {
-            get { return percentDone; }
-            set { percentDone = value; NotifyPropertyChanged("PercentDone"); }
+            get { if (this != null) return percentDone; else return 0; }
+            private set { percentDone = value; NotifyPropertyChanged("PercentDone"); }
         }
-
+              
         private void NotifyPropertyChanged(String propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;

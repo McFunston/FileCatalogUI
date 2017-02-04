@@ -7,6 +7,7 @@ using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Navigation;
 using HamburgerUI.Models;
 using HamburgerUI.Services.RepositoryServices;
+using HamburgerUI.Services;
 
 namespace HamburgerUI.ViewModels
 {
@@ -18,7 +19,14 @@ namespace HamburgerUI.ViewModels
             {
                 Value = "Designtime value";
             }
-            
+            Repo = ServicesController.Instance.Repo;
+        }
+
+        private IRepository repo;
+        public IRepository Repo
+        {
+            get { return repo; }
+            set { Set(ref repo, value); }
         }
 
         private List<File> searchResults;
@@ -67,10 +75,9 @@ namespace HamburgerUI.ViewModels
         }
 
         public void SearchCatalog()
-        {
-            EFR = new EFRepository();
+        {            
             SearchResults = new List<File>();
-            SearchResults = EFR.Search(SearchString);
+            SearchResults = Repo.Search(SearchString);
         }           
 
         public void Clear()
