@@ -74,10 +74,10 @@ namespace HamburgerUI.ViewModels
             await Task.CompletedTask;
         }
 
-        public void SearchCatalog()
+        public async Task SearchCatalog()
         {            
             SearchResults = new List<File>();
-            SearchResults = Repo.Search(SearchString);
+            SearchResults = await Repo.Search(SearchString);
         }           
 
         public void Clear()

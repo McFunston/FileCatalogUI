@@ -23,7 +23,7 @@ namespace HamburgerUI.ViewModels
                 Value = "Designtime value";
             }
             Repo = ServicesController.Instance.Repo;
-            Archives = new ObservableCollection<Archive>(Repo.Load());
+            
             selectedArchive = new Archive();            
         }
 
@@ -55,6 +55,7 @@ namespace HamburgerUI.ViewModels
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
             Value = (suspensionState.ContainsKey(nameof(Value))) ? suspensionState[nameof(Value)]?.ToString() : parameter?.ToString();
+            Archives = new ObservableCollection<Archive>(await Repo.Load());
             await Task.CompletedTask;
         }
 
@@ -67,10 +68,10 @@ namespace HamburgerUI.ViewModels
             await Task.CompletedTask;
         }
 
-        public void Remove()
+        public async Task Remove()
         {
-            Repo.Remove(selectedArchive);
-            Archives = new ObservableCollection<Archive>(Repo.Load());
+            await Repo.Remove(selectedArchive);
+            Archives = new ObservableCollection<Archive>(await Repo.Load());
         }
 
         public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)

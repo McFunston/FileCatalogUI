@@ -10,8 +10,8 @@ namespace HamburgerUI.Services.RepositoryServices
     public interface IRepository
     {
         Task Add(Archive archive);
-        void Remove(Archive archive);
-        List<Archive> Load();
-        List<File> Search(string searchString);
+        Task Remove(Archive archive);
+        Task<List<Archive>> Load();
+        Task<List<File>> Search(string searchString);
     }
 }

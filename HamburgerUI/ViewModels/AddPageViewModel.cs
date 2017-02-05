@@ -27,7 +27,7 @@ namespace HamburgerUI.ViewModels
 
             Repo = ServicesController.Instance.Repo;
 
-            Archives = new ObservableCollection<Archive>(Repo.Load());
+            
 
             newFolder = ServicesController.Instance.FServe;
 
@@ -87,6 +87,7 @@ namespace HamburgerUI.ViewModels
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
+            Archives = new ObservableCollection<Archive>(await Repo.Load());
             CatalogName = (suspensionState.ContainsKey(nameof(CatalogName))) ? suspensionState[nameof(CatalogName)]?.ToString() : parameter?.ToString();
             await Task.CompletedTask;
         }
@@ -151,7 +152,7 @@ namespace HamburgerUI.ViewModels
                 Archive archiveToAdd = new Archive(CatalogName, fileListReturn.FileList);
                 await Repo.Add(archiveToAdd);                
             }
-            Archives = new ObservableCollection<Archive>(Repo.Load());
+            Archives = new ObservableCollection<Archive>(await Repo.Load());
         }
 
     }

@@ -11,11 +11,11 @@ namespace HamburgerUI.Services.RepositoryServices
     public class EFRepository : IRepository
     {
        
-        public List<Archive> Load()
+        public async Task<List<Archive>> Load()
         {
             using (var EFR = new EFRepositoryContext())
             {                
-                var EFRList = EFR.Archives.ToList<Archive>();
+                var EFRList = await EFR.Archives.ToListAsync<Archive>();
                 //var EFRFiles = EFR.Files.ToList<File>();
                 return EFRList;
             }
@@ -36,7 +36,7 @@ namespace HamburgerUI.Services.RepositoryServices
             }
         }
 
-        public void Remove (Archive archive)
+        public async Task Remove (Archive archive)
         {
             using (var EFR = new EFRepositoryContext())
             {
@@ -46,11 +46,11 @@ namespace HamburgerUI.Services.RepositoryServices
                 {
                     EFR.Files.RemoveRange(archive.Files);
                 }                
-                EFR.SaveChanges();
+                await EFR.SaveChangesAsync();
             }
         }
 
-        public List<File> Search(string searchString)
+        public async Task<List<File>> Search(string searchString)
         {
             using (var EFR = new EFRepositoryContext())
             {
@@ -60,7 +60,7 @@ namespace HamburgerUI.Services.RepositoryServices
                 //var returnList = EFR.Files.Where(f => f.Name == searchString).Select(x => x).Include("Archive") ;
 
                 //List<File> returnList = EFR.Files.Include("Archive").Where(f => f.Name == searchString).ToList();
-                return returnList.Include("Archive").ToList();
+                return await returnList.Include("Archive").ToListAsync();
             }            
         }
     }
