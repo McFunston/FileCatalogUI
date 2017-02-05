@@ -137,12 +137,6 @@ namespace HamburgerUI.ViewModels
             }            
         }
 
-        public async void AddButton()
-        {
-            await newFolder.FolderPathGrabberAsync();
-            AddFolderPathText = newFolder.FolderName;
-        }
-
         public async Task AddArchiveAsync()
         {
             var fileListReturn = await newFolder.GetFileList();
