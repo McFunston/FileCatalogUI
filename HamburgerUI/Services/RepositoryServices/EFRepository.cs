@@ -29,8 +29,7 @@ namespace HamburgerUI.Services.RepositoryServices
                 foreach (var fi in archive.Files)
                 {
                     EFR.Files.Add(fi);
-                }
-                
+                }                
                 EFR.Archives.Add(archive);
                 await EFR.SaveChangesAsync();
             }

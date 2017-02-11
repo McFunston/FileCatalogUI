@@ -25,9 +25,7 @@ namespace HamburgerUI.ViewModels
                 CatalogName = "Designtime value";
             }
 
-            Repo = ServicesController.Instance.Repo;
-
-            
+            Repo = ServicesController.Instance.Repo;            
 
             newFolder = ServicesController.Instance.FServe;
 
@@ -120,7 +118,7 @@ namespace HamburgerUI.ViewModels
 
             if (archiveWithMatchingName != null) match = true; 
 
-            if (addFolderPathText?.Length > 0 && CatalogName?.Length > 0 && !(match)) GoEnabled = true; else GoEnabled = false;
+            if (addFolderPathText?.Length > 0 && CatalogName?.Length > 0 && !(match) && PercentDone==0) GoEnabled = true; else GoEnabled = false;
         }
         
         private void percentDoneChanged(object sender, System.EventArgs e)
@@ -129,7 +127,7 @@ namespace HamburgerUI.ViewModels
         }
               
         public async void GetFolder()
-        {
+        {            
             await newFolder.FolderPathGrabberAsync();
             if (newFolder.FolderName != null)
             {
@@ -144,9 +142,13 @@ namespace HamburgerUI.ViewModels
             if (fileListReturn.Success)
             {
                 Archive archiveToAdd = new Archive(CatalogName, fileListReturn.FileList);
-                await Repo.Add(archiveToAdd);                
+                await Repo.Add(archiveToAdd);
             }
+
+            //else Console.WriteLine("RuRo");
             Archives = new ObservableCollection<Archive>(await Repo.Load());
+            CatalogName = null;
+            AddFolderPathText = null;
         }
 
     }

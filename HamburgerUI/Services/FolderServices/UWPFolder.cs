@@ -19,7 +19,7 @@ namespace HamburgerUI.Models
             PercentDone = 0;
         }
 
-        List<File> fileList = new List<File>();
+        
 
         int numberOfFiles;
 
@@ -80,6 +80,8 @@ namespace HamburgerUI.Models
 
         public async Task<FileListReturnType> GetFileList()
         {
+            List<File> fileList = new List<File>();
+            PercentDone = 1;
             FileListReturnType fileListReturn = new FileListReturnType();
 
             IReadOnlyList<StorageFile> filesInFolder;
@@ -108,14 +110,14 @@ namespace HamburgerUI.Models
                     string extension = currentFile.FileType;
                     File newFile = new File(name, dateCreated, path, size, extension);
                     fileList.Add(newFile);
-                    PercentDone = ((double)fileList.Count / (double)numberOfFiles) * 100;
+                    Math.Max(PercentDone = ((double)fileList.Count / (double)numberOfFiles) * 100, 1);
                 }
                 PercentDone = 0;
             }
             if (filesInFolder != null && filesInFolder.Count>0)
             {
                 fileListReturn.Success = true;
-                fileListReturn.FileList = fileList;
+                fileListReturn.FileList = fileList;                
                 return fileListReturn;
             }
             else return null;            
