@@ -20,6 +20,7 @@ namespace HamburgerUI.ViewModels
                 Value = "Designtime value";
             }
             Repo = ServicesController.Instance.Repo;
+            this.PropertyChanged += OnSearchResults;
         }
 
         private IRepository repo;
@@ -36,7 +37,16 @@ namespace HamburgerUI.ViewModels
             get { return searchResults; }
             set { Set(ref searchResults, value); }
         }
-        
+
+        private bool searchSuccess = false;
+
+        public bool SearchSuccess
+        {
+            get { return searchSuccess; }
+            set { Set(ref searchSuccess, value); }
+        }
+               
+
         public EFRepository EFR { get; set; }
 
         private string searchString;
@@ -87,6 +97,15 @@ namespace HamburgerUI.ViewModels
                 SearchResults = null;
                 SearchString = "";
             }
+        }
+
+        private void OnSearchResults(object sender, System.EventArgs e)
+        {
+            if (searchResults != null)
+            {
+                SearchSuccess = true;
+            }
+            else SearchSuccess = false;
         }
 
         public void GotoDetailsPage() =>

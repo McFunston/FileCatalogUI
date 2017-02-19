@@ -125,17 +125,19 @@
                         RelativePanel.RightOf="submitButton"
                         Margin="10,20,20,20"
                         Visibility="Collapsed"
-                        x:Name="WideResultsHeader">
-                <TextBlock Text="File Name:" Width="200" Style="{StaticResource ResultHeaders}"/>
-                <TextBlock Text="Found in Archive:" Width="150" Style="{StaticResource ResultHeaders}"/>
-                <TextBlock Text="Path:" Width="200" Style="{StaticResource ResultHeaders}"/>
-                <TextBlock Text="Date Created" Width="200" Style="{StaticResource ResultHeaders}"/>
+                        x:Name="WideResultsHeader"
+                        >
+                <TextBlock Text="File Name:" Width="200" Style="{StaticResource ResultHeaders}" Visibility="{Binding SearchSuccess, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="Found in Archive:" Width="150" Style="{StaticResource ResultHeaders}" Visibility="{Binding SearchSuccess, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="Path:" Width="200" Style="{StaticResource ResultHeaders}" Visibility="{Binding SearchSuccess, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="Date Created" Width="200" Style="{StaticResource ResultHeaders}" Visibility="{Binding SearchSuccess, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <ListView              
                       x:Name="SearchResults"
                 RelativePanel.Below="WideResultsHeader"
                       ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
                       ItemTemplate="{StaticResource WideSearchResults}"
+                
                       >
                 
             </ListView>
