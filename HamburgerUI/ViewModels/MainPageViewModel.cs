@@ -31,7 +31,6 @@ namespace HamburgerUI.ViewModels
         }
 
         private List<File> searchResults;
-
         public List<File> SearchResults
         {
             get { return searchResults; }
@@ -39,18 +38,23 @@ namespace HamburgerUI.ViewModels
         }
 
         private bool searchSuccess = false;
-
         public bool SearchSuccess
         {
             get { return searchSuccess; }
             set { Set(ref searchSuccess, value); }
         }
-               
+
+        private bool searching = false;
+        public bool Searching
+        {
+            get { return searching; }
+            set { Set(ref searching, value); }
+        }
+
 
         public EFRepository EFR { get; set; }
 
         private string searchString;
-
         public string SearchString
         {
             get { return searchString; }
@@ -85,9 +89,11 @@ namespace HamburgerUI.ViewModels
         }
 
         public async Task SearchCatalog()
-        {            
+        {
+            Searching = true;
             SearchResults = new List<File>();
             SearchResults = await Repo.Search(SearchString);
+            Searching = false;
         }           
 
         public void Clear()

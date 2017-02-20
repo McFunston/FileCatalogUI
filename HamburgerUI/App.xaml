@@ -2,13 +2,16 @@
                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                      xmlns:Model="using:HamburgerUI.Models"
-                     xmlns:common="using:Template10.Common">
+                     xmlns:common="using:Template10.Common"
+                     xmlns:converters="using:Template10.Converters">
 
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles\Custom.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converters:StringFormatConverter x:Key="StrFormatConverter" />
+
 
             <DataTemplate x:Key="NarrowSearchResults">
                 <StackPanel Style="{StaticResource FoundItemStyle}">
@@ -33,7 +36,7 @@
                         <TextBlock Text="{Binding Name, Mode=OneWay}" Style="{StaticResource FileStyle}" Width="200"/>
                         <TextBlock Text="{Binding Archive.Name, Mode=OneWay}" Style="{StaticResource ArchiveStyle}" Width="150"/>
                         <TextBlock Text="{Binding Path, Mode=OneWay}" Style="{StaticResource ArchiveStyle}" Width="200"/>
-                        <TextBlock Text="{Binding DateCreated, Mode=OneWay}" Style="{StaticResource ArchiveStyle}" Width="200"/>
+                        <TextBlock Text="{Binding DateCreated, Converter={StaticResource StrFormatConverter}, ConverterParameter=\{0:D\}, Mode=OneWay}" Style="{StaticResource ArchiveStyle}" Width="200"/>
                     </StackPanel>
                 </StackPanel>
             </DataTemplate>
@@ -58,7 +61,7 @@
             
             <Style TargetType="TextBlock" x:Name="ResultHeaders">
                 <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="Margin" Value="10,0,0,0" />
+                <Setter Property="Margin" Value="10,0,0,0" />                
             </Style>
 
             <!--<Style TargetType="ListView">

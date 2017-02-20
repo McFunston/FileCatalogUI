@@ -120,6 +120,16 @@
                     RelativePanel.AlignLeftWith="parameterResizer"
                     RelativePanel.Below="submitButton"
                     Style="{StaticResource RoundButtonStyle}"/>
+            
+            <ProgressRing x:Name="SearchProgress"
+                          Margin="16,20,20,20"
+                          Width="40"
+                          Height="40"
+                          RelativePanel.Below="ClearButton"
+                          IsEnabled="True"
+                          IsActive="True"
+                          Visibility="{Binding Searching, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                          />
             <StackPanel Orientation="Horizontal" 
                         RelativePanel.AlignTopWithPanel="True"
                         RelativePanel.RightOf="submitButton"
@@ -132,14 +142,12 @@
                 <TextBlock Text="Path:" Width="200" Style="{StaticResource ResultHeaders}" Visibility="{Binding SearchSuccess, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Text="Date Created" Width="200" Style="{StaticResource ResultHeaders}" Visibility="{Binding SearchSuccess, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
-            <ListView              
-                      x:Name="SearchResults"
+            
+            <ListView
+                x:Name="SearchResults"
                 RelativePanel.Below="WideResultsHeader"
-                      ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
-                      ItemTemplate="{StaticResource WideSearchResults}"
-                
-                      >
-                
+                ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
+                ItemTemplate="{StaticResource WideSearchResults}">                
             </ListView>
 
         </RelativePanel>
