@@ -19,7 +19,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>HamburgerUI_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>3F74B12DF5B3B830629DC737DD80EF1D7EA9A7F9</PackageCertificateThumbprint>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
   </PropertyGroup>
@@ -118,7 +118,6 @@
     <Compile Include="Models\Archive.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\IFile.cs" />
-    <Compile Include="Services\Converters\StringFormatConverter.cs" />
     <Compile Include="Services\FolderServices\IFolder.cs" />
     <Compile Include="Services\FolderServices\UWPFolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -95,9 +95,9 @@
                     <Interactivity:Interaction.Behaviors>
 
                         <!--  enable submit on enter key  -->
-                        <Behaviors:KeyBehavior Key="Enter">
+                        <!--<Behaviors:KeyBehavior Key="Enter">
                             <Core:CallMethodAction MethodName="SearchCatalog" TargetObject="{Binding}" />
-                        </Behaviors:KeyBehavior>
+                        </Behaviors:KeyBehavior>-->
 
                     </Interactivity:Interaction.Behaviors>
                 </TextBox>
