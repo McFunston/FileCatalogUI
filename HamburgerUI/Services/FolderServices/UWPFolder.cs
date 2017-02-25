@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -13,42 +11,33 @@ namespace HamburgerUI.Models
 {
     public class UWPFolder : IFolder, INotifyPropertyChanged
     {
+        private int numberOfFiles;
+
+        private double percentDone;
 
         public UWPFolder()
         {
             PercentDone = 0;
         }
 
-        
-
-        int numberOfFiles;
-
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public StorageFolder Folder { get; set; }
+
         public string FolderName
-        {            
-            get {
-                if ( this.Folder != null && this.Folder.Name != null)
+        {
+            get
+            {
+                if (this.Folder != null && this.Folder.Name != null)
                     return this.Folder.Name;
                 else return null;
             }
         }
-        
-        private double percentDone;
-                      
+
         public double PercentDone
         {
             get { if (this != null) return percentDone; else return 0; }
             private set { percentDone = value; NotifyPropertyChanged("PercentDone"); }
-        }
-              
-        private void NotifyPropertyChanged(String propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
         }
 
         /// <summary>
@@ -64,10 +53,9 @@ namespace HamburgerUI.Models
             {
                 addFolder = await fP.PickSingleFolderAsync();
             }
-
             catch (Exception e)
             {
-                addFolder=null;
+                addFolder = null;
             }
 
             if (addFolder != null)
@@ -75,12 +63,9 @@ namespace HamburgerUI.Models
                 Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", addFolder);
                 Folder = addFolder;
                 return addFolder.Path;
-                
             }
             else return null;
         }
-
-        public StorageFolder Folder { get; set; }
 
         /// <summary>
         /// Indexes folder.
@@ -97,7 +82,6 @@ namespace HamburgerUI.Models
             {
                 filesInFolder = await Folder.GetFilesAsync(CommonFileQuery.OrderByName);
             }
-            
             catch (Exception e)
             {
                 fileListReturn.Success = false;
@@ -122,14 +106,22 @@ namespace HamburgerUI.Models
                 }
                 PercentDone = 0;
             }
-            if (filesInFolder != null && filesInFolder.Count>0)
+            if (filesInFolder != null && filesInFolder.Count > 0)
             {
                 fileListReturn.Success = true;
-                fileListReturn.FileList = fileList;                
+                fileListReturn.FileList = fileList;
                 return fileListReturn;
             }
-            else return null;            
-            
+            else return null;
+        }
+
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

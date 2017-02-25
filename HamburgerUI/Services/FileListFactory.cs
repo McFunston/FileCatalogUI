@@ -1,10 +1,6 @@
-﻿using HamburgerUI.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HamburgerUI.Services
@@ -25,7 +21,7 @@ namespace HamburgerUI.Services
             {
                 var folder = new DirectoryInfo(@path);
                 var fileList = new List<HamburgerUI.Models.File>();
-                                
+
                 try
                 {
                     foreach (var fi in folder.EnumerateFiles())
@@ -39,7 +35,6 @@ namespace HamburgerUI.Services
                     fileListReturn.Success = false;
                     fileListReturn.ErrorMessage = "The path that you selected was not found. Did you remove the media?";
                 }
-
                 catch (SecurityException)
                 {
                     fileListReturn.Success = false;
@@ -52,9 +47,6 @@ namespace HamburgerUI.Services
             fileListReturn.FileList = await GetFileListTask;
 
             return fileListReturn;
-
-
         }
-
     }
 }

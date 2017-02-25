@@ -1,10 +1,5 @@
 ﻿using HamburgerUI.Models;
 using HamburgerUI.Services.RepositoryServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HamburgerUI.Services
 {
@@ -13,13 +8,13 @@ namespace HamburgerUI.Services
     /// </summary>
     public sealed class ServicesController
     {
-        public bool IsConfigured { get; set; }
-
-        public IRepository Repo { get; set; }
-        public IFolder FServe { get; set; }
-
         private static readonly ServicesController instance = new ServicesController();
-                     
+
+        private ServicesController()
+        {
+            IsConfigured = false;
+        }
+
         public static ServicesController Instance
         {
             get
@@ -28,10 +23,10 @@ namespace HamburgerUI.Services
             }
         }
 
-        private ServicesController()
-        {
-            IsConfigured = false;
-        }
+        public IFolder FServe { get; set; }
+        public bool IsConfigured { get; set; }
+
+        public IRepository Repo { get; set; }
 
         /// <summary>
         /// Since singleton constructor's are private this is my workaround for injecting the Repository and Folder Picker
@@ -48,6 +43,5 @@ namespace HamburgerUI.Services
             }
             else IsConfigured = false;
         }
-                
     }
 }

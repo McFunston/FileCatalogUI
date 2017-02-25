@@ -15,7 +15,7 @@
       mc:Ignorable="d">
 
     <Page.DataContext>
-        <vm:EditPageViewmodel x:Name="ViewModel"/>
+        <vm:EditPageViewmodel x:Name="ViewModel" />
     </Page.DataContext>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -73,9 +73,9 @@
                        RelativePanel.Below="pageHeader">
 
                 <TextBlock Text="Archives Currently Added"
-                           x:Name="ListHeader"                           
+                           x:Name="ListHeader"
                            FontWeight="Bold"
-                           Margin="18,16,16,10"/>
+                           Margin="18,16,16,10" />
 
                 <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0" BorderThickness="1" RelativePanel.Below="ListHeader">
 
@@ -84,37 +84,30 @@
                           x:Name="testList"
                           MinWidth="30"
                               SelectedItem="{Binding SelectedArchive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          MinHeight="10"                          
-                          
-                          >
+                          MinHeight="10">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="Model:Archive" >
+                            <DataTemplate x:DataType="Model:Archive">
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Name: " FontWeight="Bold" Margin="-10,0,5,0"/>
-                                        <TextBlock Text="{x:Bind Name, Mode=OneWay}" FontStyle="Italic" Margin="0,0,0,0"/>
-                                        <TextBlock Text=", Files added: " FontWeight="Bold" Margin="0,0,5,0"/>
-                                        <TextBlock Text="{x:Bind Count, Mode=OneWay}" FontStyle="Italic" Margin="0,0,5,0"/>
+                                        <TextBlock Text="Name: " FontWeight="Bold" Margin="-10,0,5,0" />
+                                        <TextBlock Text="{x:Bind Name, Mode=OneWay}" FontStyle="Italic" Margin="0,0,0,0" />
+                                        <TextBlock Text=", Files added: " FontWeight="Bold" Margin="0,0,5,0" />
+                                        <TextBlock Text="{x:Bind Count, Mode=OneWay}" FontStyle="Italic" Margin="0,0,5,0" />
                                     </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                    </ListView>                    
-
+                    </ListView>
                 </controls:Resizer>
-                
+
                 <!-- Click="{x:Bind ViewModel.GotoDetailsPage}" -->
                 <Button x:Name="RemoveButton"
                         Click="{x:Bind ViewModel.Remove}"
                         Content="Remove"
                         RelativePanel.AlignBottomWith="parameterResizer"
                         RelativePanel.RightOf="parameterResizer"
-                        Style="{StaticResource RoundButtonStyle}"/>
-                
+                        Style="{StaticResource RoundButtonStyle}" />
             </RelativePanel>
-
-            
         </ScrollViewer>
-
     </RelativePanel>
 </Page>

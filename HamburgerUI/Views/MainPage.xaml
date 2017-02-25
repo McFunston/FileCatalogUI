@@ -30,10 +30,9 @@
                         <Setter Target="SearchResults.ItemTemplate" Value="{StaticResource NarrowSearchResults}" />
                         <Setter Target="SearchResults.(RelativePanel.AlignLeftWith)" Value="parameterResizer" />
                         <Setter Target="SearchResults.(RelativePanel.Below)" Value="ClearButton" />
-
                     </VisualState.Setters>
                 </VisualState>
-                
+
                 <VisualState x:Name="VisualStateNormal">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
@@ -50,7 +49,7 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        
+
                         <!--  Properties for wide view  -->
 
                         <Setter Target="SearchResults.ItemTemplate" Value="{StaticResource WideSearchResults}" />
@@ -73,7 +72,6 @@
                 <AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
                 <AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
             </controls:PageHeader.SecondaryCommands>
-
         </controls:PageHeader>
 
         <RelativePanel EntranceNavigationTransitionInfo.IsTargetElement="True"
@@ -82,7 +80,6 @@
                        RelativePanel.AlignRightWithPanel="True"
                        RelativePanel.Below="pageHeader">
 
-
             <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0">
 
                 <TextBox MinWidth="150"
@@ -90,7 +87,7 @@
                          Header="Filename to search for"
                          x:Name="SearchBox"
                          Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         PlaceholderText="Search"                       
+                         PlaceholderText="Search"
                          TextWrapping="Wrap">
                     <Interactivity:Interaction.Behaviors>
 
@@ -98,10 +95,8 @@
                         <!--<Behaviors:KeyBehavior Key="Enter">
                             <Core:CallMethodAction MethodName="SearchCatalog" TargetObject="{Binding}" />
                         </Behaviors:KeyBehavior>-->
-
                     </Interactivity:Interaction.Behaviors>
                 </TextBox>
-
             </controls:Resizer>
 
             <Button x:Name="submitButton"
@@ -111,7 +106,7 @@
                     Margin="0,0,20,0"
                     RelativePanel.AlignBottomWith="parameterResizer"
                     RelativePanel.RightOf="parameterResizer" Style="{StaticResource RoundButtonStyle}" />
-            
+
             <Button x:Name="ClearButton"
                     Click="{x:Bind ViewModel.Clear}"
                     Content="Clear"
@@ -119,8 +114,8 @@
                     Margin="16,20,20,20"
                     RelativePanel.AlignLeftWith="parameterResizer"
                     RelativePanel.Below="submitButton"
-                    Style="{StaticResource RoundButtonStyle}"/>
-            
+                    Style="{StaticResource RoundButtonStyle}" />
+
             <ProgressRing x:Name="SearchProgress"
                           Margin="16,20,20,20"
                           Width="40"
@@ -128,30 +123,25 @@
                           RelativePanel.Below="ClearButton"
                           IsEnabled="True"
                           IsActive="True"
-                          Visibility="{Binding Searching, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                          />
-            <StackPanel Orientation="Horizontal" 
+                          Visibility="{Binding Searching, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+            <StackPanel Orientation="Horizontal"
                         RelativePanel.AlignTopWithPanel="True"
                         RelativePanel.RightOf="submitButton"
                         Margin="10,20,20,20"
                         Visibility="Collapsed"
-                        x:Name="WideResultsHeader"
-                        >
-                <TextBlock Text="File Name:" Width="200" Style="{StaticResource ResultHeaders}" Visibility="{Binding SearchSuccess, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock Text="Found in Archive:" Width="150" Style="{StaticResource ResultHeaders}" Visibility="{Binding SearchSuccess, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock Text="Path:" Width="200" Style="{StaticResource ResultHeaders}" Visibility="{Binding SearchSuccess, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock Text="Date Created" Width="200" Style="{StaticResource ResultHeaders}" Visibility="{Binding SearchSuccess, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        x:Name="WideResultsHeader">
+                <TextBlock Text="File Name:" Width="200" Style="{StaticResource ResultHeaders}" Visibility="{Binding SearchSuccess, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="Found in Archive:" Width="150" Style="{StaticResource ResultHeaders}" Visibility="{Binding SearchSuccess, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="Path:" Width="200" Style="{StaticResource ResultHeaders}" Visibility="{Binding SearchSuccess, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="Date Created" Width="200" Style="{StaticResource ResultHeaders}" Visibility="{Binding SearchSuccess, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
-            
+
             <ListView
                 x:Name="SearchResults"
                 RelativePanel.Below="WideResultsHeader"
                 ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
-                ItemTemplate="{StaticResource WideSearchResults}">                
+                ItemTemplate="{StaticResource WideSearchResults}">
             </ListView>
-
         </RelativePanel>
-
     </RelativePanel>
 </Page>
-

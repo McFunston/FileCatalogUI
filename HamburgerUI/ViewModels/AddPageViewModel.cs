@@ -1,22 +1,31 @@
 ﻿using HamburgerUI.Models;
 using HamburgerUI.Services;
 using HamburgerUI.Services.RepositoryServices;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Template10.Common;
 using Template10.Mvvm;
 using Template10.Services.NavigationService;
-using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Navigation;
 
 namespace HamburgerUI.ViewModels
 {
     public class AddPageViewModel : ViewModelBase
     {
+        private string addFolderPathText;
+
+        private ObservableCollection<Archive> archives;
+
+        private string catalogName = "Default";
+
+        private bool goEnabled = false;
+
+        private IFolder newFolder;
+
+        private double percentDone;
+
+        private IRepository repo;
 
         public AddPageViewModel()
         {
@@ -25,33 +34,34 @@ namespace HamburgerUI.ViewModels
                 CatalogName = "Designtime value";
             }
 
-            Repo = ServicesController.Instance.Repo;            
+            Repo = ServicesController.Instance.Repo;
 
             newFolder = ServicesController.Instance.FServe;
 
-            newFolder.PropertyChanged += percentDoneChanged;            
+            newFolder.PropertyChanged += percentDoneChanged;
 
-            PercentDone = newFolder.PercentDone;            
+            PercentDone = newFolder.PercentDone;
 
             this.PropertyChanged += OnInputValuesChanged;
         }
 
-        private ObservableCollection<Archive> archives;
+        public string AddFolderPathText
+        {
+            get { return addFolderPathText; }
+            set { Set(ref addFolderPathText, value); }
+        }
 
         public ObservableCollection<Archive> Archives
         {
             get { return archives; }
             set { Set(ref archives, value); }
-        }     
+        }
 
-        private IRepository repo;
-        public IRepository Repo
+        public string CatalogName
         {
-            get { return repo; }
-            set { Set(ref repo, value); }
-        }               
-
-        private bool goEnabled = false;
+            get { return catalogName; }
+            set { Set(ref catalogName, value); }
+        }
 
         /// <summary>
         /// Public property to map visibility of GoButton to. Prevents the user from doing a bad Add.
@@ -59,24 +69,8 @@ namespace HamburgerUI.ViewModels
         public bool GoEnabled
         {
             get { return goEnabled; }
-            set { Set(ref goEnabled,  value); }
+            set { Set(ref goEnabled, value); }
         }
-        
-        private string addFolderPathText;
-        public string AddFolderPathText
-        {
-            get { return addFolderPathText; }
-            set { Set(ref addFolderPathText, value);}
-        }
-
-        private string catalogName = "Default";
-        public string CatalogName
-        {
-            get { return catalogName; }
-            set { Set(ref catalogName, value);}
-        }
-
-        private double percentDone;
 
         /// <summary>
         /// Public property for AddProgress progress bar to bind to.
@@ -87,13 +81,41 @@ namespace HamburgerUI.ViewModels
             set { Set(ref percentDone, value); }
         }
 
-        IFolder newFolder;
-
-        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
+        public IRepository Repo
         {
+            get { return repo; }
+            set { Set(ref repo, value); }
+        }
+
+        /// <summary>
+        /// Indexes folder that user has picked.
+        /// </summary>
+        /// <returns></returns>
+        public async Task AddArchiveAsync()
+        {
+            var fileListReturn = await newFolder.GetFileList();
+
+            if (fileListReturn.Success)
+            {
+                Archive archiveToAdd = new Archive(CatalogName, fileListReturn.FileList);
+                await Repo.Add(archiveToAdd);
+            }
+
             Archives = new ObservableCollection<Archive>(await Repo.Load());
-            CatalogName = (suspensionState.ContainsKey(nameof(CatalogName))) ? suspensionState[nameof(CatalogName)]?.ToString() : parameter?.ToString();
-            await Task.CompletedTask;
+            CatalogName = null;
+            AddFolderPathText = null;
+        }
+
+        /// <summary>
+        /// Picks the folder that the user wants to index
+        /// </summary>
+        public async void GetFolder()
+        {
+            await newFolder.FolderPathGrabberAsync();
+            if (newFolder.FolderName != null)
+            {
+                AddFolderPathText = newFolder.FolderName;
+            }
         }
 
         public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
@@ -102,6 +124,13 @@ namespace HamburgerUI.ViewModels
             {
                 suspensionState[nameof(CatalogName)] = CatalogName;
             }
+            await Task.CompletedTask;
+        }
+
+        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
+        {
+            Archives = new ObservableCollection<Archive>(await Repo.Load());
+            CatalogName = (suspensionState.ContainsKey(nameof(CatalogName))) ? suspensionState[nameof(CatalogName)]?.ToString() : parameter?.ToString();
             await Task.CompletedTask;
         }
 
@@ -124,14 +153,14 @@ namespace HamburgerUI.ViewModels
             {
                 archiveWithMatchingName = Archives.FirstOrDefault(archiveToCheck => archiveToCheck.Name.Equals(CatalogName));
             }
-            
+
             bool match = false;
 
-            if (archiveWithMatchingName != null) match = true; 
+            if (archiveWithMatchingName != null) match = true;
 
-            if (addFolderPathText?.Length > 0 && CatalogName?.Length > 0 && !(match) && PercentDone==0) GoEnabled = true; else GoEnabled = false;
+            if (addFolderPathText?.Length > 0 && CatalogName?.Length > 0 && !(match) && PercentDone == 0) GoEnabled = true; else GoEnabled = false;
         }
-        
+
         /// <summary>
         /// Updates PercentDone.
         /// </summary>
@@ -141,37 +170,5 @@ namespace HamburgerUI.ViewModels
         {
             PercentDone = newFolder.PercentDone;
         }
-              
-        /// <summary>
-        /// Picks the folder that the user wants to index
-        /// </summary>
-        public async void GetFolder()
-        {            
-            await newFolder.FolderPathGrabberAsync();
-            if (newFolder.FolderName != null)
-            {
-                AddFolderPathText = newFolder.FolderName;
-            }            
-        }
-
-        /// <summary>
-        /// Indexes folder that user has picked.
-        /// </summary>
-        /// <returns></returns>
-        public async Task AddArchiveAsync()
-        {
-            var fileListReturn = await newFolder.GetFileList();
-
-            if (fileListReturn.Success)
-            {
-                Archive archiveToAdd = new Archive(CatalogName, fileListReturn.FileList);
-                await Repo.Add(archiveToAdd);
-            }
-                        
-            Archives = new ObservableCollection<Archive>(await Repo.Load());
-            CatalogName = null;
-            AddFolderPathText = null;
-        }
-
     }
 }
