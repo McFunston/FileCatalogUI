@@ -52,7 +52,10 @@ namespace HamburgerUI.ViewModels
         }               
 
         private bool goEnabled = false;
-        
+
+        /// <summary>
+        /// Public property to map visibility of GoButton to. Prevents the user from doing a bad Add.
+        /// </summary>
         public bool GoEnabled
         {
             get { return goEnabled; }
@@ -75,6 +78,9 @@ namespace HamburgerUI.ViewModels
 
         private double percentDone;
 
+        /// <summary>
+        /// Public property for AddProgress progress bar to bind to.
+        /// </summary>
         public double PercentDone
         {
             get { return percentDone; }
@@ -105,6 +111,11 @@ namespace HamburgerUI.ViewModels
             await Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Checks whether any conditions exists that should prevent the user from being able to run AddArchiveAsync (no folder chosen, name has already been used etc)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnInputValuesChanged(object sender, System.EventArgs e)
         {
             Archive archiveWithMatchingName = new Archive();
@@ -121,11 +132,19 @@ namespace HamburgerUI.ViewModels
             if (addFolderPathText?.Length > 0 && CatalogName?.Length > 0 && !(match) && PercentDone==0) GoEnabled = true; else GoEnabled = false;
         }
         
+        /// <summary>
+        /// Updates PercentDone.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void percentDoneChanged(object sender, System.EventArgs e)
         {
             PercentDone = newFolder.PercentDone;
         }
               
+        /// <summary>
+        /// Picks the folder that the user wants to index
+        /// </summary>
         public async void GetFolder()
         {            
             await newFolder.FolderPathGrabberAsync();
@@ -135,6 +154,10 @@ namespace HamburgerUI.ViewModels
             }            
         }
 
+        /// <summary>
+        /// Indexes folder that user has picked.
+        /// </summary>
+        /// <returns></returns>
         public async Task AddArchiveAsync()
         {
             var fileListReturn = await newFolder.GetFileList();
@@ -144,8 +167,7 @@ namespace HamburgerUI.ViewModels
                 Archive archiveToAdd = new Archive(CatalogName, fileListReturn.FileList);
                 await Repo.Add(archiveToAdd);
             }
-
-            //else Console.WriteLine("RuRo");
+                        
             Archives = new ObservableCollection<Archive>(await Repo.Load());
             CatalogName = null;
             AddFolderPathText = null;

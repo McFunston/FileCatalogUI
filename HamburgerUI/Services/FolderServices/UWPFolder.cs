@@ -51,6 +51,10 @@ namespace HamburgerUI.Models
             }
         }
 
+        /// <summary>
+        /// Opens a dialog for the user to select folder to archive. Also allows app permission to access the folder.
+        /// </summary>
+        /// <returns></returns>
         public async Task<string> FolderPathGrabberAsync()
         {
             StorageFolder addFolder;
@@ -78,10 +82,14 @@ namespace HamburgerUI.Models
 
         public StorageFolder Folder { get; set; }
 
+        /// <summary>
+        /// Indexes folder.
+        /// </summary>
+        /// <returns></returns>
         public async Task<FileListReturnType> GetFileList()
         {
             List<File> fileList = new List<File>();
-            PercentDone = 1;
+            PercentDone = 1; //causes progress bar to turn visible, also gives a sense that the operation has started (so they don't think it has frozen).
             FileListReturnType fileListReturn = new FileListReturnType();
 
             IReadOnlyList<StorageFile> filesInFolder;

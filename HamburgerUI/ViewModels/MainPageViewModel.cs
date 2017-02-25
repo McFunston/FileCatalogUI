@@ -31,6 +31,9 @@ namespace HamburgerUI.ViewModels
         }
 
         private List<File> searchResults;
+        /// <summary>
+        /// Public property for SearchResults ListView to bind to.
+        /// </summary>
         public List<File> SearchResults
         {
             get { return searchResults; }
@@ -45,12 +48,14 @@ namespace HamburgerUI.ViewModels
         }
 
         private bool searching = false;
+        /// <summary>
+        /// Provides a public property for the ProgressRing to bind its visibility to.
+        /// </summary>
         public bool Searching
         {
             get { return searching; }
             set { Set(ref searching, value); }
         }
-
 
         public EFRepository EFR { get; set; }
 
@@ -88,6 +93,10 @@ namespace HamburgerUI.ViewModels
             await Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Runs a search for SearchString in all cataloged file names.
+        /// </summary>
+        /// <returns>List of files whos name contains SearchString</returns>
         public async Task SearchCatalog()
         {
             Searching = true;

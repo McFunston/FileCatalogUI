@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace HamburgerUI.Models
 {
+    /// <summary>
+    /// Since UWP apps use a FolderPicker and WPF uses another class I thought it would be good to abstract that away.
+    /// </summary>
     public interface IFolder
     {
         Task<FileListReturnType> GetFileList();

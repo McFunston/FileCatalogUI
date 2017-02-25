@@ -68,6 +68,10 @@ namespace HamburgerUI.ViewModels
             await Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Removes the selected Archive.
+        /// </summary>
+        /// <returns></returns>
         public async Task Remove()
         {
             await Repo.Remove(selectedArchive);

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace HamburgerUI.Services
 {
+    /// <summary>
+    /// Singleton for maintaining one IRepository and IFolder throughout all viewmodels.
+    /// </summary>
     public sealed class ServicesController
     {
         public bool IsConfigured { get; set; }
@@ -30,6 +33,11 @@ namespace HamburgerUI.Services
             IsConfigured = false;
         }
 
+        /// <summary>
+        /// Since singleton constructor's are private this is my workaround for injecting the Repository and Folder Picker
+        /// </summary>
+        /// <param name="repo"></param>
+        /// <param name="fServe"></param>
         public void Configure(IRepository repo, IFolder fServe)
         {
             Repo = repo;
