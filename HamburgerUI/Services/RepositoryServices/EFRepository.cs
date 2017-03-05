@@ -26,10 +26,7 @@ namespace HamburgerUI.Services.RepositoryServices
         {
             using (var EFR = new EFRepositoryContext())
             {
-                foreach (var fi in archive.Files)
-                {
-                    EFR.Files.Add(fi);
-                }                
+                EFR.Files.AddRange(archive.Files);
                 EFR.Archives.Add(archive);
                 await EFR.SaveChangesAsync();
             }
@@ -40,10 +37,10 @@ namespace HamburgerUI.Services.RepositoryServices
             using (var EFR = new EFRepositoryContext())
             {
                 EFR.Archives.Remove(archive);
-                var EFRFiles = EFR.Files.ToList<File>();
+                var EFRFiles = await EFR.Files.ToListAsync<File>();
                 if (archive.Files != null)
                 {
-                    EFR.Files.RemoveRange(archive.Files);
+                    EFR.Files.RemoveRange(archive.Files);                    
                 }                
                 await EFR.SaveChangesAsync();
             }

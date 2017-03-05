@@ -12,6 +12,7 @@ using HamburgerUI.Models;
 using Microsoft.EntityFrameworkCore;
 using HamburgerUI.Services.RepositoryServices;
 using HamburgerUI.Services;
+using Microsoft.HockeyApp;
 
 namespace HamburgerUI
 {
@@ -49,6 +50,7 @@ namespace HamburgerUI
 
             UWPFolder folder = new UWPFolder();
             EFRepository EFRepo = new EFRepository();
+            HockeyClient.Current.Configure("439e0c88350044518bc86c583b8640c6");
 
             ServCon = ServicesController.Instance;
             if (false == ServCon.IsConfigured) ServCon.Configure(EFRepo, folder);                    

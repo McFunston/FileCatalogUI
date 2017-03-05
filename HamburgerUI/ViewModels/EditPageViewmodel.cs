@@ -14,7 +14,7 @@ namespace HamburgerUI.ViewModels
     {
         private string _Value = "Default";
 
-        private ObservableCollection<Archive> archives;
+        private List<Archive> archives;
 
         private IRepository repo;
 
@@ -31,7 +31,7 @@ namespace HamburgerUI.ViewModels
             selectedArchive = new Archive();
         }
 
-        public ObservableCollection<Archive> Archives
+        public List<Archive> Archives
         {
             get { return archives; }
             set { Set(ref archives, value); }
@@ -63,7 +63,7 @@ namespace HamburgerUI.ViewModels
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
             Value = (suspensionState.ContainsKey(nameof(Value))) ? suspensionState[nameof(Value)]?.ToString() : parameter?.ToString();
-            Archives = new ObservableCollection<Archive>(await Repo.Load());
+            Archives = await Repo.Load();
             await Task.CompletedTask;
         }
 
@@ -80,7 +80,7 @@ namespace HamburgerUI.ViewModels
         public async Task Remove()
         {
             await Repo.Remove(selectedArchive);
-            Archives = new ObservableCollection<Archive>(await Repo.Load());
+            Archives = await Repo.Load();
         }
     }
 }

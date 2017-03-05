@@ -15,7 +15,7 @@ namespace HamburgerUI.ViewModels
     {
         private string addFolderPathText;
 
-        private ObservableCollection<Archive> archives;
+        private List<Archive> archives;
 
         private string catalogName = "Default";
 
@@ -51,7 +51,7 @@ namespace HamburgerUI.ViewModels
             set { Set(ref addFolderPathText, value); }
         }
 
-        public ObservableCollection<Archive> Archives
+        public List<Archive> Archives
         {
             get { return archives; }
             set { Set(ref archives, value); }
@@ -101,7 +101,7 @@ namespace HamburgerUI.ViewModels
                 await Repo.Add(archiveToAdd);
             }
 
-            Archives = new ObservableCollection<Archive>(await Repo.Load());
+            Archives = await Repo.Load();
             CatalogName = null;
             AddFolderPathText = null;
         }
@@ -129,7 +129,7 @@ namespace HamburgerUI.ViewModels
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
-            Archives = new ObservableCollection<Archive>(await Repo.Load());
+            Archives = await Repo.Load();
             CatalogName = (suspensionState.ContainsKey(nameof(CatalogName))) ? suspensionState[nameof(CatalogName)]?.ToString() : parameter?.ToString();
             await Task.CompletedTask;
         }
