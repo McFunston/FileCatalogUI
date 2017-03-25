@@ -133,7 +133,7 @@ namespace HamburgerUI.ViewModels
 
         private void OnSearchResults(object sender, System.EventArgs e)
         {
-            if (searchResults != null)
+            if (searchResults != null && searchResults.Count > 0)
             {
                 SearchSuccess = true;
             }
