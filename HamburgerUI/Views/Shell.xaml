@@ -55,6 +55,23 @@
         <Controls:HamburgerMenu.SecondaryButtons>
             
             <!--  settingspage button  -->
+
+            <Controls:HamburgerButtonInfo x:Name="HelpButton"
+                                          PageParameter="0"
+                                          PageType="views:HelpPage">
+                <Controls:HamburgerButtonInfo.NavigationTransitionInfo>
+                    <SuppressNavigationTransitionInfo />
+                </Controls:HamburgerButtonInfo.NavigationTransitionInfo>
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Width="48"
+                                Height="48"
+                                Symbol="Help" />
+                    <TextBlock Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Help" />
+                </StackPanel>
+            </Controls:HamburgerButtonInfo>
+
             <Controls:HamburgerButtonInfo x:Name="SettingsButton"
                                           PageParameter="0"
                                           PageType="views:SettingsPage">

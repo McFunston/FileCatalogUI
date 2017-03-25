@@ -86,8 +86,8 @@ namespace HamburgerUI.ViewModels
         public void GotoAbout() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 2);
 
-        public void GotoDetailsPage() =>
-            NavigationService.Navigate(typeof(Views.DetailPage), Value);
+        //public void GotoDetailsPage() =>
+        //    NavigationService.Navigate(typeof(Views.DetailPage), Value);
 
         public void GotoPrivacy() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 1);
