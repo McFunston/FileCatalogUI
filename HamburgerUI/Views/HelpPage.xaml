@@ -22,8 +22,18 @@
                 <TextBlock TextAlignment="Center" FontWeight="Bold">
                     Adding Archives to Your Catalog
                 </TextBlock>
-                <StackPanel x:Name="AddPageHelp" Margin="0, 20, 20 20" >
+                <StackPanel x:Name="AddPageHelp" Margin="0, 20, 20 20" Orientation="Horizontal">
                     <Image Source="ms-appx:///Assets/AddPageHelp.png" MaxWidth="500"/>
+                    <TextBlock MaxWidth="500" TextWrapping="WrapWholeWords" LineHeight="24">
+                        <Bold FontStyle="Italic">To add an archive to DisCat you need to do three things:</Bold><LineBreak/>
+                        <Italic>1) Give the archive a name.</Italic>  You can type the name that you want into the Archive Name box (highlighted in red here). 
+                        Something short and descriptive will probably work best ("DVD13" = good, "stuff that I want to keep" = not so good). <LineBreak/>
+                        <Italic>2) Choose the folder/disk that you want to index.</Italic>  You can do this by hitting the Path Chooser button. This will open a 
+                        Folder Picker that you can use to pick the location you want indexed. Your choice will be reflected in the Path to Add box 
+                        (highlighted in green here) <LineBreak/>
+                        <Italic>3) Hit the Add Archive button.</Italic> This is not shown here but will appear once you've done steps one and two. If it doesn't 
+                        appear double check that you've done the first 2 steps properly.
+                    </TextBlock>
 
                 </StackPanel>
                 <TextBlock TextAlignment="Center" FontWeight="Bold">
