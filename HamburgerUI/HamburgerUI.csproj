@@ -169,8 +169,11 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\AddPageHelp.png" />
     <Content Include="Assets\DisCa-Shady.png" />
     <Content Include="Assets\DisCat.png" />
+    <Content Include="Assets\EditPageHelp.png" />
+    <Content Include="Assets\SearchPageHelp.png" />
     <Content Include="Help.htm" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
