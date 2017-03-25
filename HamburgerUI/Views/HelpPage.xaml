@@ -19,15 +19,24 @@
 
         <ScrollViewer RelativePanel.Below="pageHeader" Margin="20, 20, 20 20">
             <StackPanel>
-                <StackPanel Margin="0, 20, 20 20">
+                <TextBlock TextAlignment="Center" FontWeight="Bold">
+                    Adding Archives to Your Catalog
+                </TextBlock>
+                <StackPanel x:Name="AddPageHelp" Margin="0, 20, 20 20" >
                     <Image Source="ms-appx:///Assets/AddPageHelp.png" MaxWidth="500"/>
 
                 </StackPanel>
-                <StackPanel Margin="0, 20, 20 20">
+                <TextBlock TextAlignment="Center" FontWeight="Bold">
+                    Removing Archives from Your Catalog
+                </TextBlock>
+                <StackPanel x:Name="EditPageHelp" Margin="0, 20, 20 20">
                     <Image Source="ms-appx:///Assets/EditPageHelp.png" MaxWidth="500"/>
-
+                
                 </StackPanel>
-                <StackPanel Margin="0, 20, 20 20">
+                <TextBlock TextAlignment="Center" FontWeight="Bold">
+                    Searching for Files in Your Catalog
+                </TextBlock>
+                <StackPanel x:Name="SearchPageHelp" Margin="0, 20, 20 20">
                     <Image Source="ms-appx:///Assets/SearchPageHelp.png" MaxWidth="500"/>
 
                 </StackPanel>
