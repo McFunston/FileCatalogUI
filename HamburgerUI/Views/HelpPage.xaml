@@ -22,34 +22,70 @@
                 <TextBlock TextAlignment="Center" FontWeight="Bold">
                     Adding Archives to Your Catalog
                 </TextBlock>
-                <StackPanel x:Name="AddPageHelp" Margin="0, 20, 20 20" Orientation="Horizontal">
-                    <Image Source="ms-appx:///Assets/AddPageHelp.png" MaxWidth="500"/>
-                    <TextBlock MaxWidth="500" TextWrapping="WrapWholeWords" LineHeight="24">
-                        <Bold FontStyle="Italic">To add an archive to DisCat you need to do three things:</Bold><LineBreak/>
-                        <Italic>1) Give the archive a name.</Italic>  You can type the name that you want into the Archive Name box (highlighted in red here). 
-                        Something short and descriptive will probably work best ("DVD13" = good, "stuff that I want to keep" = not so good). <LineBreak/>
-                        <Italic>2) Choose the folder/disk that you want to index.</Italic>  You can do this by hitting the Path Chooser button. This will open a 
-                        Folder Picker that you can use to pick the location you want indexed. Your choice will be reflected in the Path to Add box 
-                        (highlighted in green here) <LineBreak/>
-                        <Italic>3) Hit the Add Archive button.</Italic> This is not shown here but will appear once you've done steps one and two. If it doesn't 
-                        appear double check that you've done the first 2 steps properly.
-                    </TextBlock>
-
-                </StackPanel>
+                <Grid x:Name="AddPageHelp" Margin="0, 20, 20 20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="ms-appx:///Assets/AddPageHelp.png" MaxWidth="500" Margin="20,20,20,20" Stretch="Uniform" Grid.Column="0" VerticalAlignment="Top"/>
+                    <StackPanel MaxWidth="500" Margin="0,20,20,20" Grid.Column="1">
+                        <TextBlock TextAlignment="Left" Style="{StaticResource HelpParagraphs}">
+                        <Bold FontStyle="Italic">To add an archive to DisCat you need to do three things:</Bold>
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource HelpParagraphs}" >
+                            <Italic>1) Give the archive a name.</Italic>  You can type the name that you want into the Archive Name box (highlighted in red here).
+                            Something short and descriptive will probably work best ("DVD13" = good, "stuff that I want to keep" = not so good).
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource HelpParagraphs}">
+                            <Italic>2) Choose the folder/disk that you want to index.</Italic>  You can do this by hitting the Path Chooser button. This will open a
+                            Folder Picker that you can use to pick the location you want indexed. Your choice will be reflected in the Path to Add box 
+                            (highlighted in green here)
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource HelpParagraphs}">
+                        <Italic>3) Hit the Add Archive button.</Italic> This is not shown here but will appear once you've done steps one and two. If it doesn't
+                            appear double check that you've done the first 2 steps properly.
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>                
                 <TextBlock TextAlignment="Center" FontWeight="Bold">
                     Removing Archives from Your Catalog
                 </TextBlock>
-                <StackPanel x:Name="EditPageHelp" Margin="0, 20, 20 20">
-                    <Image Source="ms-appx:///Assets/EditPageHelp.png" MaxWidth="500"/>
-                
-                </StackPanel>
+
+                <Grid x:Name="EditPageHelp" Margin="0, 20, 20 20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="ms-appx:///Assets/EditPageHelp.png" MaxWidth="500" Margin="20,20,20,20" Grid.Column="0" Stretch="Uniform" VerticalAlignment="Top"/>                    
+                    <StackPanel MaxWidth="500" Margin="0,20,20,20" Grid.Column="1">
+                        <TextBlock TextAlignment="Left" Style="{StaticResource HelpParagraphs}">
+                        <Bold FontStyle="Italic">Archives that have been added can also be removed on the remove page:</Bold>
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource HelpParagraphs}" >
+                            Simply click on the archive that you want to remove (highlighted here in red) and click remove. Depending on the number of files this may take
+                            a few seconds.
+                        </TextBlock>                        
+                    </StackPanel>                
+                </Grid>
                 <TextBlock TextAlignment="Center" FontWeight="Bold">
                     Searching for Files in Your Catalog
                 </TextBlock>
-                <StackPanel x:Name="SearchPageHelp" Margin="0, 20, 20 20">
-                    <Image Source="ms-appx:///Assets/SearchPageHelp.png" MaxWidth="500"/>
-
-                </StackPanel>
+                <Grid x:Name="SearchPageHelp" Margin="0, 20, 20 20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="ms-appx:///Assets/SearchPageHelp.png" MaxWidth="500" Margin="20,20,20,20" Grid.Column="0" Stretch="Uniform" VerticalAlignment="Top"/>
+                    <StackPanel MaxWidth="500" Margin="0,20,20,20" Grid.Column="1">
+                        <TextBlock TextAlignment="Left" Style="{StaticResource HelpParagraphs}">
+                        <Bold FontStyle="Italic">To find a file in your archives simply type in its name (or part of its name) in the search box (highlighted here in red).</Bold>
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource HelpParagraphs}" >
+                            If your search is successful you will be shown a list of all files that contain your search string within their file name. This will include
+                            a number of details including the name of the archive that contains your file.
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
 
             </StackPanel>
 
