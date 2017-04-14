@@ -6,4 +6,8 @@ Keep track of the contents of your files that have been save to CDs, DVDs, USB s
 
 FileCatalogUI was written both for the joy of creating something that others might find useful, and to illustrate my understanding of MVVM, Entity Framework, the repository pattern, and the benefits of abstraction.
 
-This project makes use of both Template10 and Entity FrameworkCore.
+This project makes use of both Template10 and Entity Framework Core.
+
+![ScreenShot](https://github.com/McFunston/FileCatalogUI/blob/master/HamburgerUI/Assets/SearchPageHelp.png)
+![ScreenShot2](https://github.com/McFunston/FileCatalogUI/blob/master/HamburgerUI/Assets/AddPageHelp.png)
+![ScreenShot3](https://github.com/McFunston/FileCatalogUI/blob/master/HamburgerUI/Assets/EditPageHelp.png)
