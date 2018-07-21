@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamburgerUI", "HamburgerUI\HamburgerUI.csproj", "{6D27A464-73C5-464F-BC22-C1A74851E9CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisCat", "HamburgerUI\DisCat.csproj", "{6D27A464-73C5-464F-BC22-C1A74851E9CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +36,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5069D9C-B893-4E28-80A6-45F5A6FF7E15}
 	EndGlobalSection
 EndGlobal

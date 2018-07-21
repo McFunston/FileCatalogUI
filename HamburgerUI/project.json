@@ -9,7 +9,7 @@
     "Template10": "1.1.13-preview-20161207"
   },
   "frameworks": {
-    "uap10.0": {}
+    "uap10.0": {UAP, Version=v10.0.14393}
   },
   "runtimes": {
     "win10-arm": {},
