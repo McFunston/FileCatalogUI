@@ -1,1 +1,1 @@
-C:\Visual Studio Projects\FileCatalogUI\HamburgerUI\AppPackages\HamburgerUI_1.1.16.0\HamburgerUI_1.1.16.0_x86_x64_arm.appxbundle
+C:\Visual Studio Projects\FileCatalogUI\HamburgerUI\bin\ARM\Release\Upload\DisCat_1.1.20.0\DisCat_1.1.20.0_x86_x64_arm.appxbundle
